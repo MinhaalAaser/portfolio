@@ -1,7 +1,10 @@
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
+import { useDispatch } from 'react-redux';
+import { openContactModal } from '../components/redux/contactModalSlice';
 
 const inter = Inter({ subsets: ['latin'] });
+const dispatch = useDispatch();
 
 export default function Home() {
   return (
@@ -9,7 +12,7 @@ export default function Home() {
       className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
     >
       <header className="flex w-full flex-col items-center justify-between py-12">
-        <nav className="flex flex-col w-full max-w-5xl items-center justify-between">
+        <nav className="flex flex-col w-full max-w-5xl items-center justify-center">
           {/* Logo */}
           <div className="flex items-center">
             <Image
@@ -20,29 +23,32 @@ export default function Home() {
             />
           </div>
 
-          {/* Nav Links */}
-          <div className="hidden md:flex space-x-4">
-            <a
-              href="#portfolio"
-              className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-            >
-              Portfolio
-            </a>
-            <a
-              href="#blog"
-              className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-            >
-              Blog
-            </a>
+          <div className="flex items-center text-center justify-center m-5 md:justify-between">
+            {/* Navigation Links */}
+            <section className="mr-20">
+              <a
+                href="#portfolio"
+                className="px-4 py-2 m-1 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+              >
+                Portfolio
+              </a>
+              <a
+                href="#blog"
+                className="px-4 py-2 m-1 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+              >
+                Blog
+              </a>{' '}
+            </section>
+            {/* Contact Button */}
+            <section>
+              <button
+                onClick={() => dispatch(openContactModal())}
+                className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"
+              >
+                Contact
+              </button>
+            </section>
           </div>
-
-          {/* Contact Button */}
-          <a
-            href="mailto:minhaal@aaserzypher.dev"
-            className="hidden md:flex px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-          >
-            Contact
-          </a>
         </nav>
         <div className="flex flex-col items-center text-center">
           <h1 className="text-4xl font-bold">Welcome to Aaser Zypher.dev!</h1>
@@ -66,10 +72,10 @@ export default function Home() {
         </div>
       </header>
       <footer className="mt-12 flex flex-col w-full items-center justify-center md:flex-row border-t border-gray-300 p-4">
-        <p className="text-center text-white-600 text-shadow-md-red">
+        <p className="text-center text-white-600">
           Copyright &copy; {new Date().getFullYear()} AaserZypher.dev
         </p>
-        <div className="mt-4 flex items-center">
+        <div className="mt-4 md:mt-0 md:ml-20 flex items-center">
           <span className="text-gray-500">Powered by </span>
           <a
             href="https://nextjs.org/"
