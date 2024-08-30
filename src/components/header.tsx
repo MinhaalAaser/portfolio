@@ -132,13 +132,13 @@ function Header() {
           About
         </Link>
         <Link
-          href="#portfolio"
+          href="/portfolio"
           className="px-4 py-2 mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
         >
           Portfolio
         </Link>
         <Link
-          href="#blog"
+          href="/blog"
           className="px-4 py-2 mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
         >
           Blog
