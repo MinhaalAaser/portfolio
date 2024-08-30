@@ -10,13 +10,16 @@ const lato = Lato({
 
 function Blog() {
   return (
-    <div
-      className={`${lato.className} flex w-screen min-h-screen flex-col items-center justify-center`}
-    >
+    <div>
       <Header />
-      <h1 className="text-3xl font-bold text-azo-1">Blog</h1>
-      <h2 className="text-3xl font-bold text-azp-1">Coming Soon</h2>
-      <h3 className="text-3xl font-bold text-azo-2">Stay Tuned</h3>
+      <main
+        className={`${lato.className} flex w-screen min-h-screen flex-col items-center justify-start`}
+      >
+        <h1 className="text-3xl font-bold text-azo-1">Blog</h1>
+        <h2 className="text-3xl font-bold text-azp-1">Coming Soon</h2>
+        <h3 className="text-3xl font-bold text-azo-2">Stay Tuned</h3>
+      </main>
+
       <Footer />
     </div>
   );

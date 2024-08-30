@@ -17,11 +17,11 @@ const lato = Lato({
 function About() {
   const toggleModal = useContactModalStore((state) => state.toggleModal);
   return (
-    <main
-      className={`${lato.className} flex w-screen min-h-screen flex-col items-center justify-center`}
-    >
+    <div>
       <Header />
-      <div className="w-screen flex items-center justify-center flex-col ">
+      <main
+        className={`${lato.className} flex w-screen min-h-screen flex-col items-center justify-center`}
+      >
         <h1 className="text-azp-1 text-3xl mb-4 font-bold tracking-wider">
           About Me
         </h1>
@@ -74,9 +74,9 @@ function About() {
             something great together!
           </p>
         </section>
-      </div>
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
 

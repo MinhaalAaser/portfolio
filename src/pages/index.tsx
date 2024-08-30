@@ -20,11 +20,9 @@ const grenze = Grenze({
 
 export default function Home() {
   return (
-    <main
-      className={`flex w-screen min-h-screen flex-col items-center justify-center`}
-    >
+    <div>
       <Header />
-      <div className="flex w-screen flex-col items-center justify-center text-left">
+      <main className="flex w-screen min-h-screen flex-col items-center justify-center text-left">
         <h1
           className={`${hedvig_sans.className} text-gray text-3xl font-regular tracking-wide my-2`}
         >
@@ -102,8 +100,8 @@ export default function Home() {
                 <Image
                   src={logo}
                   alt={heading}
-                  width={96} // Replace with appropriate width
-                  height={96} // Replace with appropriate height
+                  width={96}
+                  height={96}
                   className={`h-24 w-24 p-2 mb-2 ${
                     heading === 'Next.js' || heading === 'Radix UI'
                       ? 'filter invert'
@@ -161,8 +159,8 @@ export default function Home() {
                 <Image
                   src={logo}
                   alt={heading}
-                  width={96} // Replace with appropriate width
-                  height={96} // Replace with appropriate height
+                  width={96}
+                  height={96}
                   className={`h-24 w-24 p-2 ${
                     heading === 'Flask' ? 'filter invert' : ''
                   }`}
@@ -181,8 +179,8 @@ export default function Home() {
             ))}
           </section>
         </div>
-      </div>
+      </main>
       <Footer />
-    </main>
+    </div>
   );
 }
