@@ -34,27 +34,27 @@ function About() {
             className="rounded-md"
           />
           <p className="text-gray mt-6 md:sm:ml-6 md:sm:text-left text-center text-xl font-light tracking-wide">
-            Hello! I'm <span className="text-azp-1">Minhaal,</span> the mind
-            behind{' '}
+            Hello! I&apos;m <span className="text-azp-1">Minhaal,</span> the
+            mind behind{' '}
             <span className={`text-azo-1 ${grenze.className}`}>
               AaserZypher.dev
             </span>
             <br /> <br /> Born and raised in the bustling city of Karachi,
-            Pakistan, I've always been captivated by the world of computers and
-            technology. Fast forward to today, and you'll find me in the scenic
-            landscapes of Wisconsin, USA—still glued to my screen, but with a
-            purpose.
+            Pakistan, I&apos;ve always been captivated by the world of computers
+            and technology. Fast forward to today, and you&apos;ll find me in
+            the scenic landscapes of Wisconsin, USA—still glued to my screen,
+            but with a purpose.
           </p>
         </section>
         <section>
           <p className="text-gray md:sm:text-left text-center mx-10 my-4 text-xl font-light tracking-wide">
-            I've worn many hats in my career journey: from sales floors to
+            I&apos;ve worn many hats in my career journey: from sales floors to
             customer service counters, and even the buzzing environments of
             manufacturing and warehouse operations. Each role added a layer to
-            my understanding of problem-solving and people—a combination that's
-            crucial in tech. <br /> <br /> In May 2024, I graduated from Bottega
-            University, determined to mix my lifelong passion with my
-            professional pursuits. Thats when{' '}
+            my understanding of problem-solving and people—a combination
+            that&apos;s crucial in tech. <br /> <br /> In May 2024, I graduated
+            from Bottega University, determined to mix my lifelong passion with
+            my professional pursuits. That&apos;s when{' '}
             <span className={`text-azo-1 ${grenze.className}`}>
               AaserZypher.dev
             </span>{' '}
@@ -69,7 +69,7 @@ function About() {
               }}
               className="text-black rounded-md px-2 py-1 bg-azo-1 font-bold"
             >
-              Let's build
+              Let&apos;s build
             </a>{' '}
             something great together!
           </p>

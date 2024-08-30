@@ -3,6 +3,7 @@ import { Hedvig_Letters_Sans } from 'next/font/google';
 import { Lato } from 'next/font/google';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
+import Image from 'next/image'; // Import Image from next/image
 
 const lato = Lato({
   weight: ['300', '400', '700'],
@@ -98,9 +99,11 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className=" flex flex-col items-center justify-center m-1 w-40 h-40 text-azp-1 hover:bg-azo-1 transition duration-200 text-lg font-regular tracking-wide"
               >
-                <img
+                <Image
                   src={logo}
                   alt={heading}
+                  width={96} // Replace with appropriate width
+                  height={96} // Replace with appropriate height
                   className={`h-24 w-24 p-2 mb-2 ${
                     heading === 'Next.js' || heading === 'Radix UI'
                       ? 'filter invert'
@@ -155,9 +158,11 @@ export default function Home() {
                   '${lato.className} text-thin text-sm flex flex-col items-center justify-center w-36 h-36 hover:bg-azo-1 p-4 rounded-md text-azp-1 bg-black hover:bg-gray-200 transition duration-300'
                 }
               >
-                <img
+                <Image
                   src={logo}
                   alt={heading}
+                  width={96} // Replace with appropriate width
+                  height={96} // Replace with appropriate height
                   className={`h-24 w-24 p-2 ${
                     heading === 'Flask' ? 'filter invert' : ''
                   }`}
