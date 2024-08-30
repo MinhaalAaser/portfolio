@@ -26,7 +26,7 @@ export default function Home() {
       <Header />
       <div className="flex w-screen flex-col items-center justify-center text-left">
         <h1
-          className={`${hedvig_sans.className} text-gray text-3xl font-regular tracking-wide`}
+          className={`${hedvig_sans.className} text-gray text-3xl font-regular tracking-wide my-2`}
         >
           Welcome to{' '}
           <span className={`${grenze.className} text-azo-3`}>
@@ -34,7 +34,7 @@ export default function Home() {
           </span>
         </h1>
         <p
-          className={`${hedvig_sans.className} text-gray text-2xl font-regular tracking-wide `}
+          className={`${hedvig_sans.className} text-gray text-2xl font-regular my-1 tracking-wide `}
         >
           I am{' '}
           <span className={`text-azp-1 ${grenze.className}`}>

@@ -25,7 +25,7 @@ function About() {
         <h1 className="text-azp-1 text-3xl mb-4 font-bold tracking-wider">
           About Me
         </h1>
-        <section className="flex flex-col items-center justify-center w-3/4 mb-4 md:sm:grid md:sm:grid-cols-2 ">
+        <section className="flex flex-col items-center justify-center w-3/4 mb-4 md:sm:flex-row ">
           <Image
             src="/headshot.png"
             alt="Minhaal Aaser"
@@ -67,7 +67,7 @@ function About() {
 
                 toggleModal();
               }}
-              className="text-black rounded-md px-2 py-1 bg-azo-1 font-bold"
+              className="text-black rounded-md px-2 py-1 bg-azo-1 text-l font-normal tracking-wider"
             >
               Let&apos;s build
             </a>{' '}
