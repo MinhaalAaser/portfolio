@@ -97,6 +97,7 @@ function Header() {
                 <input
                   className="w-1/2 h-10 text-center m-4 rounded-md placeholder-text-gray focus:placeholder-transparent"
                   type="email"
+                  required={true}
                   name="email"
                   placeholder="Email"
                 />
@@ -104,6 +105,7 @@ function Header() {
                 <textarea
                   className="w-3/4 h-40 text-center m-4 rounded-md text-black placeholder-text-gray focus:placeholder-transparent"
                   name="message"
+                  required={true}
                   placeholder="Type your message..."
                 ></textarea>
 
