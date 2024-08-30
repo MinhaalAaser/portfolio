@@ -47,13 +47,13 @@ export default function Home() {
           </span>{' '}
           a Full Stack Web Developer.
         </p>
-        <div className="mt-4 space-x-4 w-full flex flex-col  px-20 items-start justify-center">
+        <div className="mt-4 w-full flex flex-col md:flex-row items-start justify-center">
           <p
             className={`${lato.className}  text-gray tracking-wide mb-4 text-xl font-regular`}
           >
             Front-End Development Stack:
           </p>
-          <section className="grid w-full items-center justify-center grid-cols-4 grid-flow-row ">
+          <section className=" w-screen items-center justify-center flex md:grid-cols-4 md:grid ">
             {[
               {
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/240px-HTML5_logo_and_wordmark.svg.png',
@@ -109,7 +109,7 @@ export default function Home() {
                   alt={heading}
                   width={96}
                   height={96}
-                  className={`h-24 w-24 p-2 mb-2 ${
+                  className={`h-24 mb-2 ${
                     heading === 'Next.js' || heading === 'Radix UI'
                       ? 'filter invert'
                       : ''
