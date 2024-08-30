@@ -30,7 +30,7 @@ function Header() {
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
 
-    formData.append('access_key', process.env.WEB3_FORM_KEY);
+    formData.append('access_key', 'a36f3058-9f5e-4e43-bd1f-930c123ea325');
 
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
