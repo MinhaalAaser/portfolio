@@ -3,8 +3,15 @@ import { Hedvig_Letters_Sans } from 'next/font/google';
 import { Lato } from 'next/font/google';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
-import Image from 'next/image'; // Import Image from next/image
+import Image from 'next/image';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: 'Aaser Zypher.dev',
+  description: 'Your Vision: Our Expertise. Full Stack Web Developer',
+  keywords:
+    'portfolio, web design, web developer, web development, full-stack, full stack web development, html, css, next.js, javascript, python, python flask, Github, small business',
+};
 const lato = Lato({
   weight: ['300', '400', '700'],
   subsets: ['latin'],
@@ -24,7 +31,7 @@ export default function Home() {
       <Header />
       <main className="flex w-screen min-h-screen flex-col items-center justify-center text-left">
         <h1
-          className={`${hedvig_sans.className} text-gray text-3xl font-regular tracking-wide my-2`}
+          className={`${hedvig_sans.className} text-gray text-3xl font-regular tracking-wide mb-2`}
         >
           Welcome to{' '}
           <span className={`${grenze.className} text-azo-3`}>

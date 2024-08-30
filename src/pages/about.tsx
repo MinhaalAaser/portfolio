@@ -4,6 +4,14 @@ import Image from 'next/image';
 import { Lato } from 'next/font/google';
 import { Grenze } from 'next/font/google';
 import { useContactModalStore } from '../components/zustand/contactSlice';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About me - Aaser Zypher.dev',
+  description: 'Learn more about me!',
+  keywords:
+    'portfolio, web design, web developer, web development, full-stack, full stack web development, html, css, next.js, javascript, python, python flask, Github, small business',
+};
 
 const grenze = Grenze({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
