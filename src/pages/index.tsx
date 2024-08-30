@@ -4,14 +4,8 @@ import { Lato } from 'next/font/google';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Image from 'next/image';
-import { Metadata } from 'next';
+import Head from 'next/head';
 
-export const metadata: Metadata = {
-  title: 'Aaser Zypher.dev',
-  description: 'Your Vision: Our Expertise. Full Stack Web Developer',
-  keywords:
-    'portfolio, web design, web developer, web development, full-stack, full stack web development, html, css, next.js, javascript, python, python flask, Github, small business',
-};
 const lato = Lato({
   weight: ['300', '400', '700'],
   subsets: ['latin'],
@@ -28,10 +22,16 @@ const grenze = Grenze({
 export default function Home() {
   return (
     <div>
-      <Header />
-      <main className="flex w-screen min-h-screen flex-col items-center justify-center text-left">
+      <Head>
+        <title>Aaser Zypher.dev</title>
+        <meta name="description" content="Full Stack Web Development" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <main className="flex w-screen min-h-screen flex-col items-center justify-start">
         <h1
-          className={`${hedvig_sans.className} text-gray text-3xl font-regular tracking-wide mb-2`}
+          className={`${lato.className} text-gray text-3xl font-regular tracking-wide mb-2`}
         >
           Welcome to{' '}
           <span className={`${grenze.className} text-azo-3`}>
@@ -39,21 +39,21 @@ export default function Home() {
           </span>
         </h1>
         <p
-          className={`${hedvig_sans.className} text-gray text-2xl font-regular my-1 tracking-wide `}
+          className={`${hedvig_sans.className} text-gray grid text-2xl items-center justify-center font-regular my-2 tracking-wide `}
         >
-          I am{' '}
+          I am
           <span className={`text-azp-1 ${grenze.className}`}>
             Minhaal Aaser,
-          </span>{' '}
+          </span>
           a Full Stack Web Developer.
         </p>
-        <div className="mt-4 w-full flex flex-col md:flex-row items-start justify-center">
+        <div className="mt-4 w-inherit flex flex-col items-center justify-center">
           <p
-            className={`${lato.className}  text-gray tracking-wide mb-4 text-xl font-regular`}
+            className={`${hedvig_sans.className}  text-white tracking-wide p-2 md:px-4 md:py-2 text-2xl border-2 rounded border-azo-2 font-regular`}
           >
             Front-End Development Stack:
           </p>
-          <section className=" w-screen items-center justify-center flex md:grid-cols-4 md:grid ">
+          <section className="w-screen items-center justify-center grid grid-cols-2 gap-0 md:grid-cols-4 md:grid ">
             {[
               {
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/240px-HTML5_logo_and_wordmark.svg.png',
@@ -102,13 +102,13 @@ export default function Home() {
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" flex flex-col items-center justify-center m-1 w-40 h-40 text-azp-1 hover:bg-azo-1 transition duration-200 text-lg font-regular tracking-wide"
+                className=" flex flex-col place-items-center justify-evenly m-1 w-48 h-48 text-azp-1 hover:bg-azo-1 transition duration-200 text-lg font-regular tracking-wide"
               >
                 <Image
                   src={logo}
                   alt={heading}
                   width={96}
-                  height={96}
+                  height={72}
                   className={`h-24 mb-2 ${
                     heading === 'Next.js' || heading === 'Radix UI'
                       ? 'filter invert'
@@ -120,11 +120,11 @@ export default function Home() {
             ))}
           </section>
           <p
-            className={`${lato.className}  text-gray tracking-wide mb-4 mt-4 text-xl font-regular`}
+            className={`${hedvig_sans.className}  text-white tracking-wide p-4 text-2xl border-2 rounded border-azo-2 font-regular`}
           >
             Back-End Development Stack:
           </p>
-          <section className="grid w-full grid-cols-4 grid-flow-row gap-0">
+          <section className="w-screen items-center justify-center grid grid-cols-2 gap-0 md:grid-cols-4 md:grid ">
             {[
               {
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f8/Python_logo_and_wordmark.svg',
@@ -157,37 +157,30 @@ export default function Home() {
                 link: 'https://cloud.google.com/',
               },
             ].map(({ logo, heading, link }, index) => (
-              <div
+              <a
                 key={index}
-                className={
-                  '${lato.className} text-thin text-sm flex flex-col items-center justify-center w-36 h-36 hover:bg-azo-1 p-4 rounded-md text-azp-1 bg-black hover:bg-gray-200 transition duration-300'
-                }
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className=" flex flex-col place-items-center justify-evenly m-1 w-48 h-48 text-azp-1 hover:bg-azo-1 transition duration-200 text-lg font-regular tracking-wide"
               >
                 <Image
                   src={logo}
                   alt={heading}
                   width={96}
-                  height={96}
-                  className={`h-24 w-24 p-2 ${
-                    heading === 'Flask' ? 'filter invert' : ''
+                  height={72}
+                  className={`h-24 mb-2 ${
+                    heading === 'Flask' || heading === 'Radix UI'
+                      ? 'filter invert'
+                      : ''
                   }`}
                 />
-                <div className="mt-1">
-                  <a
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-2 text-lg font-regular hover:bg-azo-1 rounded-md transition duration-300"
-                  >
-                    {heading}
-                  </a>
-                </div>
-              </div>
+                {heading}
+              </a>
             ))}
           </section>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
