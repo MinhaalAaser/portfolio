@@ -46,7 +46,7 @@ function Header() {
     const result = await response.json();
     if (result.success) {
       console.log(result);
-      // closeModal();
+      closeModal();
     } else {
       console.log(result);
       alert('Something went wrong. Please try again.');
