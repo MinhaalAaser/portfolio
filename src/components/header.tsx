@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Hedvig_Letters_Sans } from 'next/font/google';
 import { Lato } from 'next/font/google';
 import { Grenze } from 'next/font/google';
-import { useContactModalStore } from './zustand/contactSlice';
+import { useContactModalStore } from '../components/zustand/contactSlice';
 import * as Dialog from '@radix-ui/react-dialog';
 import { FormEvent } from 'react';
 
@@ -46,7 +46,7 @@ function Header() {
     const result = await response.json();
     if (result.success) {
       console.log(result);
-      closeModal();
+      // closeModal();
     } else {
       console.log(result);
       alert('Something went wrong. Please try again.');
@@ -54,7 +54,7 @@ function Header() {
   };
 
   return (
-    <header className="flex w-full flex-col items-center justify-between">
+    <header className="flex w-screen flex-col items-center justify-between">
       <div className="flex items-center justify-center">
         <Link href="/">
           <Image
@@ -62,6 +62,7 @@ function Header() {
             alt="Aaser Zypher.dev"
             width={300}
             height={300}
+            priority={true}
           />
         </Link>
         <Dialog.Root
@@ -73,7 +74,7 @@ function Header() {
           >
             Contact
           </Dialog.Trigger>
-          <Dialog.Overlay className="fixed inset-0 bg-gray bg-opacity-30 backdrop-blur-sm flex items-center justify-center w-full" />
+          <Dialog.Overlay className="fixed inset-0 bg-gray bg-opacity-50 backdrop-blur-sm flex items-center justify-center w-full" />
           <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray rounded-md p-6 w-screen max-w-2xl">
             <Dialog.Title className="text-3xl text-center my-4 font-bold">
               Contact{' '}
@@ -117,29 +118,29 @@ function Header() {
       </div>
 
       <div
-        className={`flex items-center font-text-center justify-center m-5 md:justify-between ${hedvig_sans.className}`}
+        className={`grid gap-3 grid-cols-2 items-center font-text-center justify-center m-5 md:grid-cols-4 ${hedvig_sans.className}`}
       >
         <Link
           href="/"
-          className="px-4 py-2 mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center justify-center px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
         >
           Home
         </Link>
         <Link
           href="/about"
-          className="px-4 py-2 mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center justify-center px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
         >
           About
         </Link>
         <Link
           href="/portfolio"
-          className="px-4 py-2 mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center justify-center px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
         >
           Portfolio
         </Link>
         <Link
           href="/blog"
-          className="px-4 py-2 mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center justify-center px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
         >
           Blog
         </Link>

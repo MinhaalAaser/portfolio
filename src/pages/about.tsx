@@ -26,6 +26,7 @@ function About() {
   const toggleModal = useContactModalStore((state) => state.toggleModal);
   return (
     <div>
+      <Header />
       <main
         className={`${lato.className} flex w-screen min-h-screen flex-col items-center justify-center`}
       >
@@ -82,6 +83,7 @@ function About() {
           </p>
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
