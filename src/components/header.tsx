@@ -58,7 +58,7 @@ function Header() {
       <div className="flex items-center justify-center">
         <Link href="/">
           <Image
-            src="/logo.svg"
+            src="/facebook.png"
             alt="Aaser Zypher.dev"
             width={300}
             height={300}
@@ -71,7 +71,7 @@ function Header() {
             onOpenChange={(open) => (open ? openModal() : closeModal())}
           >
             <Dialog.Trigger
-              className={`text-xl px-6 py-3 mx-10 tracking-wider font-bold text-black bg-azo-4 rounded-md hover:bg-azo-1 ${lato.className}`}
+              className={`text-xl px-6 py-3 mx-10 tracking-wider font-bold text-azp-3 bg-azo-5 rounded-md hover:bg-azo-1 ${lato.className}`}
             >
               Contact
             </Dialog.Trigger>
