@@ -2,6 +2,7 @@ import React from 'react';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import { Lato } from 'next/font/google';
+import Head from 'next/head';
 
 const lato = Lato({
   weight: ['300', '400', '700'],
@@ -11,6 +12,15 @@ const lato = Lato({
 function Blog() {
   return (
     <div>
+      <Head>
+        <title>Blog - Aaser Zypher.dev</title>
+        <meta
+          name="description"
+          content="Weekly tidbits from my life or work that I find interesting."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Header />
       <main
         className={`${lato.className} flex w-screen min-h-screen flex-col items-center justify-start`}
