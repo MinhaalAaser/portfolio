@@ -24,7 +24,7 @@ function Footer() {
         >
           <Image
             className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-            src="/next.svg"
+            src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg"
             alt="Next.js Logo"
             width={72}
             height={24}

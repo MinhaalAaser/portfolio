@@ -84,12 +84,12 @@ export default function Home() {
                 link: 'https://reactjs.org/',
               },
               {
-                logo: '/next.svg',
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg',
                 heading: 'Next.js',
                 link: 'https://nextjs.org/',
               },
               {
-                logo: '/radix-ui.svg',
+                logo: 'https://seeklogo.com/images/R/radix-ui-logo-4DFADC9A23-seeklogo.com.png',
                 heading: 'Radix UI',
                 link: 'https://www.radix-ui.com',
               },
