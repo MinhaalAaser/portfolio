@@ -1,99 +1,183 @@
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
-import { useDispatch } from 'react-redux';
-import { openContactModal } from '../components/redux/contactModalSlice';
+import { Grenze } from 'next/font/google';
+import { Hedvig_Letters_Sans } from 'next/font/google';
+import { Lato } from 'next/font/google';
+import Footer from '@/components/footer';
+import Header from '@/components/header';
 
-const inter = Inter({ subsets: ['latin'] });
-const dispatch = useDispatch();
+const lato = Lato({
+  weight: ['300', '400', '700'],
+  subsets: ['latin'],
+});
+const hedvig_sans = Hedvig_Letters_Sans({
+  weight: '400',
+  subsets: ['latin'],
+});
+const grenze = Grenze({
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  subsets: ['latin'],
+});
 
 export default function Home() {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex w-screen min-h-screen flex-col items-center justify-center`}
     >
-      <header className="flex w-full flex-col items-center justify-between py-12">
-        <nav className="flex flex-col w-full max-w-5xl items-center justify-center">
-          {/* Logo */}
-          <div className="flex items-center">
-            <Image
-              src="/img/logo.png"
-              alt="Aaser Zypher.dev"
-              width={50}
-              height={50}
-            />
-          </div>
-
-          <div className="flex items-center text-center justify-center m-5 md:justify-between">
-            {/* Navigation Links */}
-            <section className="mr-20">
-              <a
-                href="#portfolio"
-                className="px-4 py-2 m-1 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-              >
-                Portfolio
-              </a>
-              <a
-                href="#blog"
-                className="px-4 py-2 m-1 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-              >
-                Blog
-              </a>{' '}
-            </section>
-            {/* Contact Button */}
-            <section>
-              <button
-                onClick={() => dispatch(openContactModal())}
-                className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-              >
-                Contact
-              </button>
-            </section>
-          </div>
-        </nav>
-        <div className="flex flex-col items-center text-center">
-          <h1 className="text-4xl font-bold">Welcome to Aaser Zypher.dev!</h1>
-          <p className="mt-4 text-xl">
-            Hi! I am Minhaal Aaser, an aspiring full stack web developer.
-          </p>
-          <div className="mt-8 space-x-4">
-            <a
-              href="#portfolio"
-              className="inline-flex items-center px-6 py-3 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-            >
-              Portfolio
-            </a>
-            <a
-              href="#blog"
-              className="inline-flex items-center px-6 py-3 text-white bg-blue-500 rounded-md hover:bg-blue-600"
-            >
-              Blog
-            </a>
-          </div>
-        </div>
-      </header>
-      <footer className="mt-12 flex flex-col w-full items-center justify-center md:flex-row border-t border-gray-300 p-4">
-        <p className="text-center text-white-600">
-          Copyright &copy; {new Date().getFullYear()} AaserZypher.dev
+      <Header />
+      <div className="flex w-screen flex-col items-center justify-center text-left">
+        <h1
+          className={`${hedvig_sans.className} text-gray text-3xl font-regular tracking-wide`}
+        >
+          Welcome to{' '}
+          <span className={`${grenze.className} text-azo-3`}>
+            Aaser Zypher.dev!
+          </span>
+        </h1>
+        <p
+          className={`${hedvig_sans.className} text-gray text-2xl font-regular tracking-wide `}
+        >
+          I am{' '}
+          <span className={`text-azp-1 ${grenze.className}`}>
+            Minhaal Aaser,
+          </span>{' '}
+          a Full Stack Web Developer.
         </p>
-        <div className="mt-4 md:mt-0 md:ml-20 flex items-center">
-          <span className="text-gray-500">Powered by </span>
-          <a
-            href="https://nextjs.org/"
-            className="ml-1 flex items-center"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="mt-4 space-x-4 w-full flex flex-col  px-20 items-start justify-center">
+          <p
+            className={`${lato.className}  text-gray tracking-wide mb-4 text-xl font-regular`}
           >
-            <Image
-              className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-              src="/next.svg"
-              alt="Next.js Logo"
-              width={72}
-              height={24}
-              priority
-            />
-          </a>
+            Front-End Development Stack:
+          </p>
+          <section className="grid w-full items-center justify-center grid-cols-4 grid-flow-row ">
+            {[
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/240px-HTML5_logo_and_wordmark.svg.png',
+                heading: 'HTML',
+                link: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+              },
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/240px-CSS3_logo_and_wordmark.svg.png',
+                heading: 'CSS',
+                link: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
+              },
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/240px-Sass_Logo_Color.svg.png',
+                heading: 'SCSS',
+                link: 'https://sass-lang.com/',
+              },
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg',
+                heading: 'Tailwind CSS',
+                link: 'https://tailwindcss.com/',
+              },
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/240px-JavaScript-logo.png',
+                heading: 'JavaScript',
+                link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
+              },
+
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg',
+                heading: 'React',
+                link: 'https://reactjs.org/',
+              },
+              {
+                logo: '/next.svg',
+                heading: 'Next.js',
+                link: 'https://nextjs.org/',
+              },
+              {
+                logo: '/radix-ui.svg',
+                heading: 'Radix UI',
+                link: 'https://www.radix-ui.com',
+              },
+            ].map(({ logo, heading, link }, index) => (
+              <a
+                key={index}
+                href={link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className=" flex flex-col items-center justify-center m-1 w-40 h-40 text-azp-1 hover:bg-azo-1 transition duration-200 text-lg font-regular tracking-wide"
+              >
+                <img
+                  src={logo}
+                  alt={heading}
+                  className={`h-24 w-24 p-2 mb-2 ${
+                    heading === 'Next.js' || heading === 'Radix UI'
+                      ? 'filter invert'
+                      : ''
+                  }`}
+                />
+                {heading}
+              </a>
+            ))}
+          </section>
+          <p
+            className={`${lato.className}  text-gray tracking-wide mb-4 mt-4 text-xl font-regular`}
+          >
+            Back-End Development Stack:
+          </p>
+          <section className="grid w-full grid-cols-4 grid-flow-row gap-0">
+            {[
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f8/Python_logo_and_wordmark.svg',
+                heading: 'Python',
+                link: 'https://www.python.org',
+              },
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg',
+                heading: 'Flask',
+                link: 'https://flask.palletsprojects.com/',
+              },
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg',
+                heading: 'Postgres',
+                link: 'https://postgresql.com/',
+              },
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/labs/8/8e/Mysql_logo.png',
+                heading: 'MySQL',
+                link: 'https://mysql.com/',
+              },
+              {
+                logo: 'https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png',
+                heading: 'GitHub',
+                link: 'https://github.com/',
+              },
+              {
+                logo: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg',
+                heading: 'GCP',
+                link: 'https://cloud.google.com/',
+              },
+            ].map(({ logo, heading, link }, index) => (
+              <div
+                key={index}
+                className={
+                  '${lato.className} text-thin text-sm flex flex-col items-center justify-center w-36 h-36 hover:bg-azo-1 p-4 rounded-md text-azp-1 bg-black hover:bg-gray-200 transition duration-300'
+                }
+              >
+                <img
+                  src={logo}
+                  alt={heading}
+                  className={`h-24 w-24 p-2 ${
+                    heading === 'Flask' ? 'filter invert' : ''
+                  }`}
+                />
+                <div className="mt-1">
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 text-lg font-regular hover:bg-azo-1 rounded-md transition duration-300"
+                  >
+                    {heading}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </section>
         </div>
-      </footer>
+      </div>
+      <Footer />
     </main>
   );
 }
