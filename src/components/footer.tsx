@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Hedvig_Letters_Sans } from 'next/font/google';
+import { useContactModalStore } from '../components/zustand/contactSlice';
 
 const hedvig_sans = Hedvig_Letters_Sans({
   weight: '400',
@@ -7,6 +8,7 @@ const hedvig_sans = Hedvig_Letters_Sans({
 });
 
 function Footer() {
+  const modalState = useContactModalStore((state) => state.isOpen);
   return (
     <footer
       className={`mt-12 flex flex-col w-full items-center justify-center md:flex-row border-t-4 border-azp-3 bg-black p-4 ${hedvig_sans.className}`}
@@ -23,7 +25,7 @@ function Footer() {
           rel="noopener noreferrer"
         >
           <Image
-            className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
+            className={modalState ? 'hidden' : 'filter invert'}
             src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg"
             alt="Next.js Logo"
             width={72}

@@ -43,7 +43,9 @@ function About() {
             height={500}
             className="rounded-md"
           />
-          <p className="text-gray mt-6 md:sm:ml-6 md:sm:text-left text-center text-xl font-light tracking-wide">
+          <p
+            className={`${lato.className} text-gray mt-6 md:sm:ml-6 md:sm:text-left text-center text-xl font-light tracking-wide`}
+          >
             Hello! I&apos;m <span className="text-azp-1">Minhaal,</span> the
             mind behind{' '}
             <span className={`text-azo-1 ${grenze.className}`}>
@@ -63,8 +65,12 @@ function About() {
             manufacturing and warehouse operations. Each role added a layer to
             my understanding of problem-solving and people—a combination
             that&apos;s crucial in tech. <br /> <br /> In May 2024, I graduated
-            from Bottega University, determined to mix my lifelong passion with
-            my professional pursuits. That&apos;s when{' '}
+            from{' '}
+            <a href="https://bottega.edu/" className="text-azo-1">
+              Bottega University
+            </a>
+            , determined to mix my lifelong passion with my professional
+            pursuits. That&apos;s when{' '}
             <span className={`text-azo-1 ${grenze.className}`}>
               AaserZypher.dev
             </span>{' '}

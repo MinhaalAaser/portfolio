@@ -5,6 +5,8 @@ import Footer from '@/components/footer';
 import Header from '@/components/header';
 import Image from 'next/image';
 import Head from 'next/head';
+import { useContactModalStore } from '@/components/zustand/contactSlice';
+import Link from 'next/link';
 
 const lato = Lato({
   weight: ['300', '400', '700'],
@@ -20,6 +22,8 @@ const grenze = Grenze({
 });
 
 export default function Home() {
+  const toggleModal = useContactModalStore((state) => state.toggleModal);
+  const isModalOpen = useContactModalStore((state) => state.isOpen);
   return (
     <div>
       <Head>
@@ -29,28 +33,54 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main className=" w-screen min-h-screen grid grid-rows-1 items-center content-center justify-center">
+      <main className=" min-h-screen grid grid-rows-1 items-center content-center justify-center">
         <h1
-          className={`${grenze.className} text-azo-3 text-3xl text-center w-screen font-regular tracking-wide mb-2`}
+          className={`${grenze.className} text-azo-3 text-3xl text-center font-regular tracking-wide mb-2`}
         >
           Welcome to Aaser Zypher.dev!
         </h1>
         <p
-          className={`${hedvig_sans.className} text-gray grid text-2xl items-center justify-center font-regular my-2 tracking-wide `}
+          className={`${hedvig_sans.className} text-gray grid grid-rows-1 text-center content-center text-2xl items-center justify-center font-regular my-2 tracking-wide `}
         >
           I am
-          <span className={`text-azp-1 ${grenze.className}`}>
+          <span className={`text-azp-1 text-3xl ${grenze.className}`}>
             Minhaal Aaser,
           </span>
           a Full Stack Web Developer.
         </p>
-        <div className="mt-4 w-inherit flex flex-col items-center justify-center">
+        <p
+          className={`${lato.className} md:sm:flex md:sm:flex-col md:sm:items-center md:sm:justify-center md:sm:mt-4 md:sm:mx-40 grid grid-rows-1 gap-3 text-center px-2 text-gray text-l tracking-wide`}
+        >
+          I provide complete web development solutions fromcrisp and responsive
+          Front-end UIs tosecure and scalable Back-end configurations that work
+          seamlessly on any device.
+          <Link href="/about" className="text-azp-1">
+            Read more about me...
+          </Link>
+          <Link href="/portfolio" className="text-azo-1">
+            View my recent work...
+          </Link>
+          <a
+            target="_blank"
+            onClick={(e) => {
+              e.preventDefault();
+              toggleModal();
+            }}
+            className="p-2 bg-azo-4 rounded text-azp-3 font-regular"
+          >
+            Start your website!
+          </a>
+          <span className="text-white text-xl my-4">
+            My current skillset includes:
+          </span>
+        </p>
+        <div className="mt-4 flex flex-col items-center justify-center">
           <p
             className={`${hedvig_sans.className}  text-white text-center md:text-left tracking-wide p-2 md:px-4 md:py-2 text-2xl border-2 rounded border-azo-2 font-regular`}
           >
             Front-End Development Stack:
           </p>
-          <section className="w-screen items-center content-center justify-center grid grid-cols-2 gap-0 md:grid-cols-4">
+          <section className="items-center content-center justify-center grid grid-cols-2 gap-0 md:grid-cols-4">
             {[
               {
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/240px-HTML5_logo_and_wordmark.svg.png',
@@ -99,20 +129,19 @@ export default function Home() {
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" flex flex-col items-center content-center justify-evenly m-1 w-48 h-48 text-azp-1 hover:bg-azo-1 transition duration-200 text-lg font-regular tracking-wide"
+                className="flex items-center justify-center w-48 h-48"
               >
                 <Image
                   src={logo}
                   alt={heading}
                   width={96}
                   height={96}
-                  className={`h-24 mb-2 ${
+                  className={`h-24 w-24 ${
                     heading === 'Next.js' || heading === 'Radix UI'
                       ? 'filter invert'
                       : ''
                   }`}
                 />
-                {heading}
               </a>
             ))}
           </section>
@@ -121,7 +150,7 @@ export default function Home() {
           >
             Back-End Development Stack:
           </p>
-          <section className="w-screen items-center justify-center grid grid-cols-2 gap-0 md:grid-cols-4 md:grid ">
+          <section className="items-center content-center justify-center grid grid-cols-2 gap-0 md:grid-cols-4">
             {[
               {
                 logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f8/Python_logo_and_wordmark.svg',
@@ -139,9 +168,9 @@ export default function Home() {
                 link: 'https://postgresql.com/',
               },
               {
-                logo: 'https://upload.wikimedia.org/wikipedia/labs/8/8e/Mysql_logo.png',
-                heading: 'MySQL',
-                link: 'https://mysql.com/',
+                logo: '/docker-mark-blue.svg',
+                heading: 'Docker',
+                link: 'https://www.docker.com/',
               },
               {
                 logo: 'https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png',
@@ -159,16 +188,18 @@ export default function Home() {
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className=" flex flex-col place-items-center justify-evenly m-1 w-48 h-48 text-azp-1 hover:bg-azo-1 transition duration-200 text-lg font-regular tracking-wide"
+                className="flex items-center justify-center w-48 h-48"
               >
                 <Image
                   src={logo}
                   alt={heading}
                   width={96}
                   height={72}
-                  className={`h-24 mb-2 ${
-                    heading === 'Flask' || heading === 'Radix UI'
-                      ? 'filter invert'
+                  className={`h-24 w-24 ${
+                    heading === 'Flask'
+                      ? isModalOpen
+                        ? 'hidden'
+                        : 'filter invert'
                       : ''
                   }`}
                 />

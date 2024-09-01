@@ -1,11 +1,22 @@
 import React from 'react';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
+import { Grenze } from 'next/font/google';
 import { Lato } from 'next/font/google';
+import { Noto_Serif } from 'next/font/google';
 import Head from 'next/head';
 
+const grenze = Grenze({
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  subsets: ['latin'],
+});
 const lato = Lato({
   weight: ['300', '400', '700'],
+  subsets: ['latin'],
+});
+
+const noto_serif = Noto_Serif({
+  weight: '400',
   subsets: ['latin'],
 });
 
@@ -23,11 +34,9 @@ function Blog() {
       </Head>
       <Header />
       <main
-        className={`${lato.className} flex w-screen min-h-screen flex-col items-center justify-start`}
+        className={`${grenze.className} flex w-screen min-h-screen flex-col items-center justify-start`}
       >
-        <h1 className="text-3xl font-bold text-azo-1">Blog</h1>
-        <h2 className="text-3xl font-bold text-azp-1">Coming Soon</h2>
-        <h3 className="text-3xl font-bold text-azo-2">Stay Tuned</h3>
+        <h1 className="text-3xl tracking-wider font-bold text-azo-1">Blog</h1>
       </main>
       <Footer />
     </div>

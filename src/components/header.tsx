@@ -54,11 +54,11 @@ function Header() {
   };
 
   return (
-    <header className="flex w-screen flex-col items-center justify-between">
+    <header className="flex flex-col items-center justify-between">
       <div className="flex items-center justify-center">
         <Link href="/">
           <Image
-            src="/facebook.png"
+            src="/logo.svg"
             alt="Aaser Zypher.dev"
             width={300}
             height={300}
@@ -75,7 +75,10 @@ function Header() {
             >
               Contact
             </Dialog.Trigger>
-            <Dialog.Overlay className="fixed inset-0 bg-gray bg-opacity-50 backdrop-blur-sm flex items-center justify-center w-full" />
+            <Dialog.Overlay
+              className="fixed inset-0 bg-black md:sm:bg-gray md:sm:bg-opacity-30 md:sm:backdrop-blur-sm flex items-center justify-center w-full"
+              style={{ backdropFilter: 'none' }}
+            />
             <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray rounded-md p-6 w-screen max-w-2xl">
               <Dialog.Title className="text-3xl text-center my-4 font-bold">
                 Contact{' '}
@@ -134,7 +137,7 @@ function Header() {
               <Image
                 src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"
                 alt="Github"
-                className="filter invert"
+                className={modalState ? 'hidden' : 'filter invert'}
                 width={50}
                 height={50}
               />
@@ -159,25 +162,25 @@ function Header() {
       >
         <Link
           href="/"
-          className="flex items-center justify-center px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center tracking-wider justify-center px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
         >
           Home
         </Link>
         <Link
           href="/about"
-          className="flex items-center justify-center px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center justify-center tracking-wider px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
         >
           About
         </Link>
         <Link
           href="/portfolio"
-          className="flex items-center justify-center px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center justify-center tracking-wider px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
         >
           Portfolio
         </Link>
         <Link
           href="/blog"
-          className="flex items-center justify-center px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center justify-center tracking-wider px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
         >
           Blog
         </Link>
