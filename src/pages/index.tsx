@@ -51,9 +51,9 @@ export default function Home() {
         <p
           className={`${lato.className} md:sm:flex md:sm:flex-col md:sm:items-center md:sm:justify-center md:sm:mt-4 md:sm:mx-40 grid grid-rows-1 gap-3 text-center px-2 text-gray text-l tracking-wide`}
         >
-          I provide complete web development solutions fromcrisp and responsive
-          Front-end UIs tosecure and scalable Back-end configurations that work
-          seamlessly on any device.
+          I provide complete web development solutions with crisp and responsive
+          Front-end UIs and secure Back-end configurations that work seamlessly
+          on any device.
           <Link href="/about" className="text-azp-1">
             Read more about me...
           </Link>
