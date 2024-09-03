@@ -203,7 +203,6 @@ export default function Home() {
                       : ''
                   }`}
                 />
-                {heading}
               </a>
             ))}
           </section>
