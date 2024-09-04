@@ -14,7 +14,7 @@ function Footer() {
       className={`mt-12 flex flex-col w-full items-center justify-center md:flex-row border-t-4 border-azp-3 bg-black p-4 ${hedvig_sans.className}`}
     >
       <p className="text-center text-white tracking-wider">
-        Copyright &copy; {new Date().getFullYear()} AaserZypher.dev
+        Copyright &copy; {new Date().getFullYear()} Minhaal Aaser
       </p>
       <div className="mt-4 md:mt-0 md:ml-20 flex items-center">
         <span className="text-gray tracking-wide">Powered by </span>
