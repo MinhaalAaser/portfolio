@@ -1,8 +1,6 @@
 import { Grenze } from 'next/font/google';
 import { Hedvig_Letters_Sans } from 'next/font/google';
 import { Lato } from 'next/font/google';
-import Footer from '@/components/footer';
-import Header from '@/components/header';
 import Image from 'next/image';
 import Head from 'next/head';
 import { useContactModalStore } from '@/components/zustand/contactSlice';
@@ -32,32 +30,39 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
       <main className=" min-h-screen grid grid-rows-1 items-center content-center justify-center">
         <h1
-          className={`${grenze.className} text-azo-3 text-3xl text-center font-regular tracking-wide mb-2`}
+          className={`${grenze.className} text-azs-1 text-shadow-sm shadow-azg-1 text-3xl text-center font-regular tracking-wide m-2`}
         >
           Welcome to Aaser Zypher.dev!
         </h1>
         <p
-          className={`${hedvig_sans.className} text-gray grid grid-rows-1 text-center content-center text-2xl items-center justify-center font-regular my-2 tracking-wide `}
+          className={`${hedvig_sans.className} text-azs-1 grid text-shadow-sm shadow-azg-1 grid-rows-1 text-center content-center text-2xl items-center justify-center font-regular my-2 tracking-wide `}
         >
           I am
-          <span className={`text-azp-1 text-3xl ${grenze.className}`}>
+          <span
+            className={`text-azg-2 my-2 text-shadow-sm shadow-azb-5 text-3xl ${grenze.className}`}
+          >
             Minhaal Aaser,
           </span>
           a Full Stack Web Developer.
         </p>
         <p
-          className={`${lato.className} md:sm:flex md:sm:flex-col md:sm:items-center md:sm:justify-center md:sm:mt-4 md:sm:mx-40 grid grid-rows-1 gap-3 text-center px-2 text-gray text-l tracking-wide`}
+          className={`${lato.className} md:sm:flex md:sm:flex-col md:sm:items-center md:sm:justify-center md:sm:mt-4 md:sm:mx-40 grid grid-rows-1 gap-3 text-center px-2 text-azs-1 text-lg font-mediumtext-shadow-sm shadow-azg-1 font-regular tracking-wider`}
         >
           I provide complete web development solutions with crisp and responsive
           Front-end UIs and secure Back-end configurations that work seamlessly
           on any device.
-          <Link href="/about" className="text-azp-1">
+          <Link
+            href="/about"
+            className="text-azb-1 my-2 shadow-azg-2 shadow-md px-2 py-1 text-xl"
+          >
             Read more about me...
           </Link>
-          <Link href="/portfolio" className="text-azo-1">
+          <Link
+            href="/portfolio"
+            className="text-azg-2 my-2 text-shadow-sm shadow-azb-1 shadow-md px-2 py-1 text-xl"
+          >
             View my recent work...
           </Link>
           <a
@@ -66,17 +71,17 @@ export default function Home() {
               e.preventDefault();
               toggleModal();
             }}
-            className="p-2 bg-azo-4 rounded text-azp-3 font-regular"
+            className="p-2 my-2 bg-azs-1 text-shadow-sm shadow-azg-2 hover:cursor-pointer hover:bg-azg-1 text-azb-5 text-xl"
           >
-            Start your website!
+            Contact me to get started!
           </a>
-          <span className="text-white text-xl my-4">
+          <span className="text-azs-1 text-shadow-md shadow-azb-5 font-regular text-xl my-4">
             My current skillset includes:
           </span>
         </p>
         <div className="mt-4 flex flex-col items-center justify-center">
           <p
-            className={`${hedvig_sans.className}  text-white text-center md:text-left tracking-wide p-2 md:px-4 md:py-2 text-2xl border-2 rounded border-azo-2 font-regular`}
+            className={`${hedvig_sans.className}  text-azs-1 text-center md:text-left tracking-wide p-2 md:px-4 md:py-2 text-2xl border-2 rounded border-azg-2 font-regular`}
           >
             Front-End Development Stack:
           </p>
@@ -146,7 +151,7 @@ export default function Home() {
             ))}
           </section>
           <p
-            className={`${hedvig_sans.className}  text-white text-center md:text-left tracking-wide p-2 md:px-4 md:py-2 text-2xl border-2 rounded border-azo-2 font-regular`}
+            className={`${hedvig_sans.className}  text-azs-1 text-center md:text-left tracking-wide p-2 md:px-4 md:py-2 text-2xl border-2 rounded border-azg-2 font-regular`}
           >
             Back-End Development Stack:
           </p>
@@ -200,6 +205,10 @@ export default function Home() {
                       ? isModalOpen
                         ? 'hidden'
                         : 'filter invert'
+                      : heading === 'GCP'
+                      ? 'bg-white'
+                      : heading === 'Python'
+                      ? 'bg-azs-1'
                       : ''
                   }`}
                 />
@@ -208,7 +217,6 @@ export default function Home() {
           </section>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

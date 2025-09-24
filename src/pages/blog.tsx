@@ -1,6 +1,4 @@
 import React from 'react';
-import Footer from '@/components/footer';
-import Header from '@/components/header';
 import { Grenze } from 'next/font/google';
 import { Lato } from 'next/font/google';
 import { Noto_Serif } from 'next/font/google';
@@ -32,13 +30,13 @@ function Blog() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
       <main
-        className={`${grenze.className} flex w-screen min-h-screen flex-col items-center justify-start`}
+        className={`${grenze.className} flex w-screen flex-col items-center justify-start`}
       >
-        <h1 className="text-3xl tracking-wider font-bold text-azo-1">Blog</h1>
+        <h1 className="text-3xl tracking-wider font-bold text-shadow-sm shadow-azb-5 text-azg-2">
+          Blog Coming Soon
+        </h1>
       </main>
-      <Footer />
     </div>
   );
 }

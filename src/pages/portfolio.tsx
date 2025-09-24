@@ -1,6 +1,4 @@
 import React from 'react';
-import Footer from '@/components/footer';
-import Header from '@/components/header';
 import { Lato } from 'next/font/google';
 import Head from 'next/head';
 
@@ -18,15 +16,13 @@ function Portfolio() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
       <main
         className={`${lato.className} flex w-screen min-h-screen flex-col items-center justify-start`}
       >
-        <h1 className="text-3xl font-bold text-azo-1">Portfolio</h1>
-        <h2 className="text-3xl font-bold text-azp-1">Coming Soon</h2>
-        <h3 className="text-3xl font-bold text-azo-2">Stay Tuned</h3>
+        <h1 className="text-3xl font-bold text-azg-2">Portfolio</h1>
+        <h2 className="text-3xl font-bold text-azs-1">Coming Soon</h2>
+        <h3 className="text-3xl font-bold text-azg-2">Stay Tuned</h3>
       </main>
-      <Footer />
     </div>
   );
 }

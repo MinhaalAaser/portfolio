@@ -55,23 +55,23 @@ function Header() {
 
   return (
     <header className="flex flex-col items-center justify-between">
-      <div className="flex items-center justify-center">
-        <Link href="/">
+      <div className="grid grid-cols-2 gap-4 items-center justify-center">
+        <Link href="/" className="border-radius">
           <Image
-            src="/logo.svg"
+            src="/AZ-logo-nobg-2.svg"
             alt="Aaser Zypher.dev"
-            width={300}
+            width={240}
             height={300}
             priority={true}
           />
         </Link>
-        <section className="grid grid-rows-1 gap-4 items-center justify-center">
+        <section className="grid grid-rows-1 gap-8 items-center justify-center">
           <Dialog.Root
             open={modalState}
             onOpenChange={(open) => (open ? openModal() : closeModal())}
           >
             <Dialog.Trigger
-              className={`text-xl px-6 py-3 mx-10 tracking-wider font-bold text-azp-3 bg-azo-5 rounded-md hover:bg-azo-1 ${lato.className}`}
+              className={`text-xl px-6 py-3 mx-10 tracking-wider font-bold text-azb-5 bg-azg-2 rounded-md hover:bg-azb-1 hover:text-azg-2 ${lato.className}`}
             >
               Contact
             </Dialog.Trigger>
@@ -79,12 +79,11 @@ function Header() {
               className="fixed inset-0 bg-black md:sm:bg-gray md:sm:bg-opacity-30 md:sm:backdrop-blur-sm flex items-center justify-center w-full"
               style={{ backdropFilter: 'none' }}
             />
-            <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray rounded-md p-6 w-screen max-w-2xl">
-              <Dialog.Title className="text-3xl text-center my-4 font-bold">
-                Contact{' '}
-                <span className={`${grenze.className} text-azo-3`}>
-                  AaserZyper.Dev
-                </span>
+            <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-azs-2 rounded-md p-6 w-screen max-w-2xl">
+              <Dialog.Title
+                className={`${grenze.className} text-3xl text-shadow-md shadow-azb-5 tracking-wider text-azg-2 text-center my-4 font-bold`}
+              >
+                Contact Me
               </Dialog.Title>
               <form
                 onSubmit={handleSubmit}
@@ -94,11 +93,11 @@ function Header() {
                   type="text"
                   name="name"
                   placeholder="Name"
-                  className="w-1/2  h-10 text-center m-4 rounded-md placeholder-text-gray focus:placeholder-transparent"
+                  className="w-1/2  h-10 text-center m-4 rounded-md placeholder-text-azb-4 focus:placeholder-transparent"
                 />
 
                 <input
-                  className="w-1/2 h-10 text-center m-4 rounded-md placeholder-text-gray focus:placeholder-transparent"
+                  className="w-1/2 h-10 text-center m-4 rounded-md placeholder-text-azb-4 focus:placeholder-transparent"
                   type="email"
                   required={true}
                   name="email"
@@ -106,14 +105,14 @@ function Header() {
                 />
 
                 <textarea
-                  className="w-3/4 h-40 text-center m-4 rounded-md text-black placeholder-text-gray focus:placeholder-transparent"
+                  className="w-3/4 h-40 text-center m-4 rounded-md p-2 text-black placeholder-text-azb-4 focus:text-margin-5 focus:text-left focus:placeholder-transparent"
                   name="message"
                   required={true}
                   placeholder="Type your message..."
                 ></textarea>
 
                 <button
-                  className="px-4 py-2 m-5 text-gray text-lg tracking-wider bg-azp-3 rounded-md hover:bg-azp-1"
+                  className="px-4 py-2 m-5 text-azs-1 text-lg tracking-wider bg-azb-4 rounded-md hover:bg-azb-2"
                   type="submit"
                 >
                   Submit Form
@@ -145,6 +144,7 @@ function Header() {
             <a
               target="_blank"
               href="https://www.linkedin.com/in/minhaal-aaser/"
+              className="filter brightness-150 "
             >
               <Image
                 src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg"
@@ -158,31 +158,37 @@ function Header() {
       </div>
 
       <div
-        className={`grid gap-3 grid-cols-2 items-center font-text-center justify-center m-5 md:grid-cols-4 ${hedvig_sans.className}`}
+        className={`grid gap-3 grid-cols-1 items-center font-text-center justify-center mb-4 md:grid-cols-5 ${hedvig_sans.className}`}
       >
         <Link
           href="/"
-          className="flex items-center tracking-wider justify-center px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center tracking-wider justify-center px-4 py-2 md:mx-5 text-azb-5 font-bold text-xl bg-azg-2 rounded-md hover:text-azg-2 hover:bg-azb-1"
         >
           Home
         </Link>
         <Link
           href="/about"
-          className="flex items-center justify-center tracking-wider px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center justify-center tracking-wider px-4 py-2 md:mx-5 text-azb-5 font-bold text-xl bg-azg-2 rounded-md hover:text-azg-2 hover:bg-azb-1"
         >
           About
         </Link>
         <Link
           href="/portfolio"
-          className="flex items-center justify-center tracking-wider px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center justify-center tracking-wider px-4 py-2 md:mx-5 text-azb-5 font-bold text-xl bg-azg-2 rounded-md hover:text-azg-2 hover:bg-azb-1"
         >
           Portfolio
         </Link>
         <Link
           href="/blog"
-          className="flex items-center justify-center tracking-wider px-4 py-2 md:mx-5 text-gray bg-azp-3 rounded-md hover:bg-azp-1"
+          className="flex items-center justify-center tracking-wider px-4 py-2 md:mx-5 text-azb-5 font-bold text-xl bg-azg-2 rounded-md hover:text-azg-2 hover:bg-azb-1"
         >
           Blog
+        </Link>
+        <Link
+          href="/pricing"
+          className="flex items-center justify-center tracking-wider px-4 py-2 md:mx-5 text-azb-5 font-bold text-xl bg-azg-2 rounded-md hover:text-azg-2 hover:bg-azb-1"
+        >
+          Pricing
         </Link>
       </div>
     </header>

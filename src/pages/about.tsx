@@ -1,5 +1,3 @@
-import Footer from '@/components/footer';
-import Header from '@/components/header';
 import Image from 'next/image';
 import { Lato } from 'next/font/google';
 import { Grenze } from 'next/font/google';
@@ -28,27 +26,31 @@ function About() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
       <main
-        className={`${lato.className} flex w-screen min-h-screen flex-col items-center justify-center`}
+        className={`${lato.className} flex w-screen flex-col items-center justify-center mt-4`}
       >
-        <h1 className="text-azp-1 text-3xl mb-4 font-bold tracking-wider">
+        <h1 className="text-azs-1 text-shadow-lg shadow-azb-5  p-2 text-3xl mb-4 font-bold tracking-wider">
           About Me
         </h1>
         <section className="flex flex-col items-center justify-center w-3/4 mb-4 md:sm:flex-row ">
           <Image
-            src="/headshot.png"
+            src="/me.jpg"
             alt="Minhaal Aaser"
             width={300}
             height={500}
             className="rounded-md"
           />
           <p
-            className={`${lato.className} text-gray mt-6 md:sm:ml-6 md:sm:text-left text-center text-xl font-light tracking-wide`}
+            className={`${lato.className} text-azs-1 text-shadow-md shadow-azb-5 md:sm:ml-6 md:sm:text-left text-center text-xl tracking-wide`}
           >
-            Hello! I&apos;m <span className="text-azp-1">Minhaal,</span> the
-            mind behind{' '}
-            <span className={`text-azo-1 ${grenze.className}`}>
+            Hello! I&apos;m{' '}
+            <span className="text-azg-2 text-shadow-md shadow-azb-5 ">
+              Minhaal,
+            </span>{' '}
+            the mind behind{' '}
+            <span
+              className={`text-azg-2 tracking-wider text-shadow-md shadow-azb-5 text-xl${grenze.className}`}
+            >
               AaserZypher.dev
             </span>
             <br /> <br /> Born and raised in the bustling city of Karachi,
@@ -59,19 +61,19 @@ function About() {
           </p>
         </section>
         <section>
-          <p className="text-gray md:sm:text-left text-center mx-10 my-4 text-xl font-light tracking-wide">
+          <p className="text-azs-1 text-shadow-md shadow-azb-5 md:sm:text-left text-center mx-10 my-4 text-xl font-medium tracking-wide">
             I&apos;ve worn many hats in my career journey: from sales floors to
             customer service counters, and even the buzzing environments of
             manufacturing and warehouse operations. Each role added a layer to
             my understanding of problem-solving and people—a combination
             that&apos;s crucial in tech. <br /> <br /> In May 2024, I graduated
             from{' '}
-            <a href="https://bottega.edu/" className="text-azo-1">
+            <a href="https://bottega.edu/" className="text-azg-2">
               Bottega University
             </a>
             , determined to mix my lifelong passion with my professional
             pursuits. That&apos;s when{' '}
-            <span className={`text-azo-1 ${grenze.className}`}>
+            <span className={`text-azg-2 tracking-wider ${grenze.className}`}>
               AaserZypher.dev
             </span>{' '}
             was born. Here, I offer Full Stack Web Development solutions that
@@ -83,7 +85,7 @@ function About() {
 
                 toggleModal();
               }}
-              className="text-black rounded-md px-2 py-1 bg-azo-1 text-l font-normal tracking-wider"
+              className="text-black rounded-md px-2 py-1 bg-azg-2 text-xl hover:text-azg-2 hover:bg-azb-1 tracking-wider"
             >
               Let&apos;s build
             </a>{' '}
@@ -91,7 +93,6 @@ function About() {
           </p>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

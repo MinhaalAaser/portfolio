@@ -11,13 +11,13 @@ function Footer() {
   const modalState = useContactModalStore((state) => state.isOpen);
   return (
     <footer
-      className={`mt-12 flex flex-col w-full items-center justify-center md:flex-row border-t-4 border-azp-3 bg-black p-4 ${hedvig_sans.className}`}
+      className={`mt-auto flex flex-col w-full items-center justify-center md:flex-row border-t-4 border-azg-1 bg-black p-4 ${hedvig_sans.className}`}
     >
-      <p className="text-center text-white tracking-wider">
-        Copyright &copy; {new Date().getFullYear()} Minhaal Aaser
+      <p className="text-center text-azs-1 tracking-wider">
+        Copyright &copy; {new Date().getFullYear()} Aaser Zypher Solutions
       </p>
       <div className="mt-4 md:mt-0 md:ml-20 flex items-center">
-        <span className="text-gray tracking-wide">Powered by </span>
+        <span className="text-azs-1 tracking-wide">Powered by </span>
         <a
           href="https://nextjs.org/"
           className="ml-1 flex items-center"
