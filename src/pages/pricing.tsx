@@ -3,6 +3,7 @@ import { Lato } from 'next/font/google';
 import { Grenze } from 'next/font/google';
 import { useContactModalStore } from '../components/zustand/contactSlice';
 import Head from 'next/head';
+import { Link } from 'lucide-react';
 
 const grenze = Grenze({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -26,17 +27,19 @@ function Pricing() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main
-        className={`${lato.className} flex w-screen items-center justify-center`}
-      >
-        <Image src="/pricing1.png" alt="Pricing1" width={450} height={400} />
-        <Image
-          src="/pricing2.png"
-          alt="Pricing2"
-          width={450}
-          height={400}
-          className="rounded-md"
-        />
+      <main className="flex w-screen min-h-screen flex-col items-center justify-center">
+        <a
+          href="/Ratesheet.pdf"
+          download
+          className={`${grenze.className} text-azs-1 grid text-3xl text-shadow-md w-1/2 shadow-azb-5 grid-rows-1 text-center content-center items-center justify-center font-regular my-8 tracking-wider bg-azb-1 rounded-full`}
+        >
+          <span className="text-azg-2 mb-1">Download Ratesheet</span>
+        </a>
+
+        <section className="md:flex md:w-screen items-center justify-center grid grid-rows-1">
+          <Image src="/pricing1.png" alt="Pricing1" width={450} height={400} />
+          <Image src="/pricing2.png" alt="Pricing2" width={450} height={400} />
+        </section>
       </main>
     </div>
   );

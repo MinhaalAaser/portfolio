@@ -32,13 +32,13 @@ function About() {
         <h1 className="text-azs-1 text-shadow-lg shadow-azb-5  p-2 text-3xl mb-4 font-bold tracking-wider">
           About Me
         </h1>
-        <section className="flex flex-col items-center justify-center w-3/4 mb-4 md:sm:flex-row ">
+        <section className="grid grid-cols-1 items-center justify-center w-3/4 mb-4 md:grid md:grid-cols-2 md:gap-4 ">
           <Image
             src="/me.jpg"
             alt="Minhaal Aaser"
             width={300}
             height={500}
-            className="rounded-md"
+            className="mx-auto md:mx-0 mb-8 md:mb-0 rounded-full shadow-azg-1 shadow-lg"
           />
           <p
             className={`${lato.className} text-azs-1 text-shadow-md shadow-azb-5 md:sm:ml-6 md:sm:text-left text-center text-xl tracking-wide`}
