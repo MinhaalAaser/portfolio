@@ -13,7 +13,7 @@ services:
   - type: web
     name: nextjs-static
     runtime: static
-    buildCommand: yarn install --frozen-lockfile && yarn build
+    buildCommand: yarn install && yarn build
     staticPublishPath: out
     pullRequestPreviewsEnabled: true
     envVars:
