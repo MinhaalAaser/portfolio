@@ -16,6 +16,22 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Blog API Origin
+
+Blog API requests use a single origin source at `src/lib/blogApi.tsx`.
+
+Set `NEXT_PUBLIC_BLOG_API_BASE` to override it:
+
+```bash
+NEXT_PUBLIC_BLOG_API_BASE=http://192.168.0.181:5002
+```
+
+For Pages Router static export, this value is injected at build time, so set it before `next build` / `next export`.
+
+If this env var is not set, the fallback is:
+- development: `http://192.168.0.181:5002`
+- production: `https://api.aaserzypher.dev/blog`
+
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
 [API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
