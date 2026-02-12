@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import BlogAuthButton from "@/components/buttons/BlogAuthButton";
 import BlogAuthModal from "@/components/modals/BlogAuthModal";
 import { useBlogStore } from "@/components/zustand/blogSlice";
+import { blogExcerpt } from "@/lib/blogContent";
 
 const grenze = Grenze({ weight: ["400", "600", "700"], subsets: ["latin"] });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
@@ -59,7 +60,7 @@ export default function Blog() {
 									{new Date(post.created_at).toLocaleDateString()}
 								</p>
 								<p className={`${lato.className} text-base text-gray-200 mb-6`}>
-									{post.content?.slice(0, 160)}...
+									{blogExcerpt(post.content)}
 								</p>
 								<Link
 									href={`/blog/${post.slug}`}

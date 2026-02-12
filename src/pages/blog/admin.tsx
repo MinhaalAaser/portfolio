@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { type Post, useBlogStore } from "@/components/zustand/blogSlice";
+import { normalizeBlogContent } from "@/lib/blogContent";
 import { blogApiUrl } from "@/lib/blogApi";
 import BlogPostModal from "../../components/modals/BlogPostModal";
 
@@ -134,7 +135,7 @@ export default function BlogAdmin(): JSX.Element {
 
 			setEditingPostSlug(post.slug);
 			setModalTitle(post.title);
-			setModalContent(post.content);
+			setModalContent(normalizeBlogContent(post.content));
 			setModalKeywords(post.keywords || "");
 			openModal();
 		};

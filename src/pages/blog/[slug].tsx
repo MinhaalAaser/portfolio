@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { type Post, useBlogStore } from "@/components/zustand/blogSlice";
+import { normalizeBlogContent } from "@/lib/blogContent";
 import { blogApiUrl } from "@/lib/blogApi";
 
 export default function BlogPost() {
@@ -20,7 +21,10 @@ export default function BlogPost() {
 
 		const localPost = posts.find((p) => p.slug === slugValue);
 		if (localPost) {
-			setPost(localPost);
+			setPost({
+				...localPost,
+				content: normalizeBlogContent(localPost.content),
+			});
 			setLoading(false);
 			return; // stop here, no fetch needed
 		}
@@ -38,7 +42,10 @@ export default function BlogPost() {
 				if (!res.ok) throw new Error("Post not found");
 				const data = await res.json();
 				const fetchedPost: Post = data.post ?? data;
-				setPost(fetchedPost);
+				setPost({
+					...fetchedPost,
+					content: normalizeBlogContent(fetchedPost.content),
+				});
 			} catch (err) {
 				console.error(err);
 				setPost(null);
@@ -69,7 +76,7 @@ export default function BlogPost() {
 
 			<div className="prose prose-azb max-w-full text-azb-4">
 				<ReactMarkdown remarkPlugins={[remarkGfm]}>
-					{post.content}
+					{normalizeBlogContent(post.content)}
 				</ReactMarkdown>
 			</div>
 		</article>

@@ -2,6 +2,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import dynamic from "next/dynamic";
 import type { FormEvent } from "react";
 import { type Post, useBlogStore } from "@/components/zustand/blogSlice";
+import { normalizeBlogContent } from "@/lib/blogContent";
 import { blogApiUrl } from "@/lib/blogApi";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
@@ -39,7 +40,7 @@ export default function BlogPostModal(): JSX.Element {
 
 		const body = {
 			title: modalTitle,
-			content: modalContent,
+			content: normalizeBlogContent(modalContent),
 			keywords: modalKeywords,
 		};
 
