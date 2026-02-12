@@ -2,7 +2,8 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
-import "@mdxeditor/editor/style.css";
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (

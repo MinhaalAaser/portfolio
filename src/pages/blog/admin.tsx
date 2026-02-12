@@ -97,19 +97,49 @@ export default function BlogAdmin(): JSX.Element {
 	]);
 
 	const openNewPostModal = (): void => {
-		setEditingPostSlug(null);
-		setModalTitle("");
-		setModalContent("");
-		setModalKeywords("");
-		openModal();
+		const prepareAndOpen = async () => {
+			const refreshedToken = await refreshAccessToken();
+			if (!refreshedToken) {
+				const existingToken = await getValidAccessToken();
+				if (!existingToken) {
+					clearAccessToken();
+					setIsAuthorized(false);
+					router.replace("/blog");
+					return;
+				}
+			}
+
+			setEditingPostSlug(null);
+			setModalTitle("");
+			setModalContent("");
+			setModalKeywords("");
+			openModal();
+		};
+
+		void prepareAndOpen();
 	};
 
 	const openEditModal = (post: Post): void => {
-		setEditingPostSlug(post.slug);
-		setModalTitle(post.title);
-		setModalContent(post.content);
-		setModalKeywords(post.keywords || "");
-		openModal();
+		const prepareAndOpen = async () => {
+			const refreshedToken = await refreshAccessToken();
+			if (!refreshedToken) {
+				const existingToken = await getValidAccessToken();
+				if (!existingToken) {
+					clearAccessToken();
+					setIsAuthorized(false);
+					router.replace("/blog");
+					return;
+				}
+			}
+
+			setEditingPostSlug(post.slug);
+			setModalTitle(post.title);
+			setModalContent(post.content);
+			setModalKeywords(post.keywords || "");
+			openModal();
+		};
+
+		void prepareAndOpen();
 	};
 
 	const handleDelete = async (slug: string): Promise<void> => {

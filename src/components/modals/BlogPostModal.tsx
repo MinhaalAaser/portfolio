@@ -1,8 +1,10 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import dynamic from "next/dynamic";
 import type { FormEvent } from "react";
-import RichMarkdownEditor from "@/components/RichMDEditor";
 import { type Post, useBlogStore } from "@/components/zustand/blogSlice";
 import { blogApiUrl } from "@/lib/blogApi";
+
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
 export default function BlogPostModal(): JSX.Element {
 	const {
@@ -20,14 +22,18 @@ export default function BlogPostModal(): JSX.Element {
 
 		addPost,
 		updatePost,
+		getValidAccessToken,
+		refreshAccessToken,
+		clearAccessToken,
 	} = useBlogStore();
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-		const token = localStorage.getItem("access_token"); // get JWT
+		let token = await getValidAccessToken();
 		if (!token) {
-			alert("You must be logged in to perform this action.");
+			clearAccessToken();
+			alert("Session expired. Please log in again.");
 			return;
 		}
 
@@ -41,14 +47,32 @@ export default function BlogPostModal(): JSX.Element {
 		const method: "POST" | "PUT" = editingPostSlug ? "PUT" : "POST";
 
 		try {
-			const res = await fetch(url, {
+			let res = await fetch(url, {
 				method,
 				headers: {
 					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`, // attach JWT
+					Authorization: `Bearer ${token}`,
 				},
 				body: JSON.stringify(body),
 			});
+
+			if (res.status === 401) {
+				token = await refreshAccessToken();
+				if (!token) {
+					clearAccessToken();
+					alert("Session expired. Please log in again.");
+					return;
+				}
+
+				res = await fetch(url, {
+					method,
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer ${token}`,
+					},
+					body: JSON.stringify(body),
+				});
+			}
 
 			if (!res.ok) {
 				const errData = await res.json();
@@ -92,10 +116,15 @@ export default function BlogPostModal(): JSX.Element {
 							onChange={(e) => setModalKeywords(e.target.value)}
 						/>
 						<div className="max-h-96 overflow-y-auto border rounded bg-azs-1">
-							<RichMarkdownEditor
-								value={modalContent}
-								onChange={setModalContent}
-							/>
+							<div data-color-mode="light">
+								<MDEditor
+									value={modalContent}
+									onChange={(value: string | undefined) =>
+										setModalContent(value ?? "")
+									}
+									height={320}
+								/>
+							</div>
 						</div>
 						<button
 							type="submit"
