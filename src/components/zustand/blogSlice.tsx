@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { BLOG_API_ORIGIN, blogApiUrl } from "@/lib/blogApi";
+import { blogApiUrl } from "@/lib/blogApi";
 
 export interface Post {
 	id?: number;
@@ -124,31 +124,27 @@ export const useBlogStore = create<BlogState>((set, get) => ({
 		return localStorage.getItem("access_token");
 	},
 	refreshAccessToken: async () => {
-		const endpoints = [
-			blogApiUrl("auth/refresh"),
-			`${BLOG_API_ORIGIN}/refresh`,
-		] as const;
+		try {
+			const res = await fetch(blogApiUrl("auth/refresh"), {
+				method: "POST",
+				credentials: "include",
+			});
 
-		for (const endpoint of endpoints) {
-			try {
-				const res = await fetch(endpoint, {
-					method: "POST",
-					credentials: "include",
-				});
-
-				if (!res.ok) continue;
-
-				const data = await res.json();
-				const token =
-					typeof data?.access_token === "string" ? data.access_token : null;
-
-				if (token) {
-					get().setAccessToken(token);
-					return token;
-				}
-			} catch (err) {
-				console.error(err);
+			if (!res.ok) {
+				get().clearAccessToken();
+				return null;
 			}
+
+			const data = await res.json();
+			const token =
+				typeof data?.access_token === "string" ? data.access_token : null;
+
+			if (token) {
+				get().setAccessToken(token);
+				return token;
+			}
+		} catch (err) {
+			console.error(err);
 		}
 
 		get().clearAccessToken();
