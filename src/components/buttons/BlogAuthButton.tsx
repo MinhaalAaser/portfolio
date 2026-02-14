@@ -6,17 +6,16 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 function BlogAuthButton() {
 	const router = useRouter();
-	const { openAuthModal } = useBlogStore((state) => ({
+	const { openAuthModal, getAccessToken } = useBlogStore((state) => ({
 		openAuthModal: state.openAuthModal,
+		getAccessToken: state.getAccessToken,
 	}));
 
 	const handleClick = () => {
-		if (typeof window !== "undefined") {
-			const token = localStorage.getItem("access_token");
-			if (token) {
-				router.push("/blog/admin");
-				return;
-			}
+		const token = getAccessToken();
+		if (token) {
+			router.push("/blog/admin");
+			return;
 		}
 
 		openAuthModal();

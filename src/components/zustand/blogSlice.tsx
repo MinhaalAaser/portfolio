@@ -37,6 +37,10 @@ interface BlogState {
 	getAccessToken: () => string | null;
 	refreshAccessToken: () => Promise<string | null>;
 	getValidAccessToken: () => Promise<string | null>;
+	fetchWithAuth: (
+		input: RequestInfo | URL,
+		init?: RequestInit,
+	) => Promise<Response | null>;
 
 	// Modal fields
 	modalTitle: string;
@@ -144,6 +148,32 @@ export const useBlogStore = create<BlogState>((set, get) => ({
 		const existingToken = get().getAccessToken();
 		if (existingToken) return existingToken;
 		return get().refreshAccessToken();
+	},
+	fetchWithAuth: async (input, init = {}) => {
+		let token = await get().getValidAccessToken();
+		if (!token) return null;
+
+		let res = await fetch(input, {
+			...init,
+			headers: {
+				...(init.headers ?? {}),
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (res.status !== 401) return res;
+
+		token = await get().refreshAccessToken();
+		if (!token) return null;
+
+		res = await fetch(input, {
+			...init,
+			headers: {
+				...(init.headers ?? {}),
+				Authorization: `Bearer ${token}`,
+			},
+		});
+		return res;
 	},
 
 	// Modal fields

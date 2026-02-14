@@ -14,7 +14,7 @@ export default function Blog() {
 	const { posts, fetchPosts } = useBlogStore();
 
 	useEffect(() => {
-		fetchPosts(true);
+		fetchPosts();
 	}, [fetchPosts]);
 
 	return (

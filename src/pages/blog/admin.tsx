@@ -16,8 +16,7 @@ export default function BlogAdmin(): JSX.Element {
 		setModalKeywords,
 		deletePost,
 		setPosts,
-		getValidAccessToken,
-		refreshAccessToken,
+		fetchWithAuth,
 		clearAccessToken,
 	} = useBlogStore();
 
@@ -27,39 +26,9 @@ export default function BlogAdmin(): JSX.Element {
 	useEffect(() => {
 		let isMounted = true;
 
-		const requestWithAuth = async (
-			input: RequestInfo | URL,
-			init: RequestInit = {},
-		): Promise<Response | null> => {
-			let token = await getValidAccessToken();
-			if (!token) return null;
-
-			let res = await fetch(input, {
-				...init,
-				headers: {
-					...(init.headers ?? {}),
-					Authorization: `Bearer ${token}`,
-				},
-			});
-
-			if (res.status !== 401) return res;
-
-			token = await refreshAccessToken();
-			if (!token) return null;
-
-			res = await fetch(input, {
-				...init,
-				headers: {
-					...(init.headers ?? {}),
-					Authorization: `Bearer ${token}`,
-				},
-			});
-			return res;
-		};
-
 		const initializeAdmin = async () => {
 			try {
-				const res = await requestWithAuth(blogApiUrl("/"));
+				const res = await fetchWithAuth(blogApiUrl("/"));
 				if (!isMounted) return;
 
 				if (!res || !res.ok) {
@@ -90,87 +59,41 @@ export default function BlogAdmin(): JSX.Element {
 			isMounted = false;
 		};
 	}, [
-		getValidAccessToken,
-		refreshAccessToken,
+		fetchWithAuth,
 		clearAccessToken,
 		router,
 		setPosts,
 	]);
 
 	const openNewPostModal = (): void => {
-		const prepareAndOpen = async () => {
-			const refreshedToken = await refreshAccessToken();
-			if (!refreshedToken) {
-				const existingToken = await getValidAccessToken();
-				if (!existingToken) {
-					clearAccessToken();
-					setIsAuthorized(false);
-					router.replace("/blog");
-					return;
-				}
-			}
-
-			setEditingPostSlug(null);
-			setModalTitle("");
-			setModalContent("");
-			setModalKeywords("");
-			openModal();
-		};
-
-		void prepareAndOpen();
+		setEditingPostSlug(null);
+		setModalTitle("");
+		setModalContent("");
+		setModalKeywords("");
+		openModal();
 	};
 
 	const openEditModal = (post: Post): void => {
-		const prepareAndOpen = async () => {
-			const refreshedToken = await refreshAccessToken();
-			if (!refreshedToken) {
-				const existingToken = await getValidAccessToken();
-				if (!existingToken) {
-					clearAccessToken();
-					setIsAuthorized(false);
-					router.replace("/blog");
-					return;
-				}
-			}
-
-			setEditingPostSlug(post.slug);
-			setModalTitle(post.title);
-			setModalContent(normalizeBlogContent(post.content));
-			setModalKeywords(post.keywords || "");
-			openModal();
-		};
-
-		void prepareAndOpen();
+		setEditingPostSlug(post.slug);
+		setModalTitle(post.title);
+		setModalContent(normalizeBlogContent(post.content));
+		setModalKeywords(post.keywords || "");
+		openModal();
 	};
 
 	const handleDelete = async (slug: string): Promise<void> => {
 		if (!confirm("Are you sure you want to delete this post?")) return;
 
 		try {
-			let token = await getValidAccessToken();
-			if (!token) {
-				clearAccessToken();
-				router.replace("/blog/admin");
-				return;
-			}
-
-			let res = await fetch(blogApiUrl(slug), {
+			const res = await fetchWithAuth(blogApiUrl(slug), {
 				method: "DELETE",
-				headers: { Authorization: `Bearer ${token}` },
 			});
 
-			if (res.status === 401) {
-				token = await refreshAccessToken();
-				if (!token) {
-					clearAccessToken();
-					router.replace("/blog/admin");
-					return;
-				}
-
-				res = await fetch(blogApiUrl(slug), {
-					method: "DELETE",
-					headers: { Authorization: `Bearer ${token}` },
-				});
+			if (!res) {
+				clearAccessToken();
+				setIsAuthorized(false);
+				router.replace("/blog");
+				return;
 			}
 
 			if (res.ok) deletePost(slug);

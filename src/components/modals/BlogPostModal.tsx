@@ -23,20 +23,12 @@ export default function BlogPostModal(): JSX.Element {
 
 		addPost,
 		updatePost,
-		getValidAccessToken,
-		refreshAccessToken,
+		fetchWithAuth,
 		clearAccessToken,
 	} = useBlogStore();
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
-		let token = await getValidAccessToken();
-		if (!token) {
-			clearAccessToken();
-			alert("Session expired. Please log in again.");
-			return;
-		}
 
 		const body = {
 			title: modalTitle,
@@ -48,31 +40,18 @@ export default function BlogPostModal(): JSX.Element {
 		const method: "POST" | "PUT" = editingPostSlug ? "PUT" : "POST";
 
 		try {
-			let res = await fetch(url, {
+			const res = await fetchWithAuth(url, {
 				method,
 				headers: {
 					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
 				},
 				body: JSON.stringify(body),
 			});
 
-			if (res.status === 401) {
-				token = await refreshAccessToken();
-				if (!token) {
-					clearAccessToken();
-					alert("Session expired. Please log in again.");
-					return;
-				}
-
-				res = await fetch(url, {
-					method,
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${token}`,
-					},
-					body: JSON.stringify(body),
-				});
+			if (!res) {
+				clearAccessToken();
+				alert("Session expired. Please log in again.");
+				return;
 			}
 
 			if (!res.ok) {

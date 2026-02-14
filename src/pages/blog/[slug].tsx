@@ -75,9 +75,7 @@ export default function BlogPost() {
 			)}
 
 			<div className="prose prose-azb max-w-full text-azb-4">
-				<ReactMarkdown remarkPlugins={[remarkGfm]}>
-					{normalizeBlogContent(post.content)}
-				</ReactMarkdown>
+				<ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
 			</div>
 		</article>
 	);
