@@ -4,18 +4,72 @@ import Link from "next/link";
 import { useEffect } from "react";
 import BlogAuthButton from "@/components/buttons/BlogAuthButton";
 import BlogAuthModal from "@/components/modals/BlogAuthModal";
+import BlogPostModal from "@/components/modals/BlogPostModal";
 import { useBlogStore } from "@/components/zustand/blogSlice";
-import { blogExcerpt } from "@/lib/blogContent";
+import { blogPreview, normalizeBlogContent } from "@/lib/blogContent";
+import { blogApiUrl } from "@/lib/blogApi";
 
 const grenze = Grenze({ weight: ["400", "600", "700"], subsets: ["latin"] });
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export default function Blog() {
-	const { posts, fetchPosts } = useBlogStore();
+	const {
+		posts,
+		fetchPosts,
+		isManager,
+		syncAccessToken,
+		openModal,
+		setEditingPostSlug,
+		setModalTitle,
+		setModalContent,
+		setModalKeywords,
+		deletePost,
+		fetchWithAuth,
+		clearAccessToken,
+	} = useBlogStore();
 
 	useEffect(() => {
 		fetchPosts();
-	}, [fetchPosts]);
+		syncAccessToken();
+	}, [fetchPosts, syncAccessToken]);
+
+	const openNewPostModal = (): void => {
+		setEditingPostSlug(null);
+		setModalTitle("");
+		setModalContent("");
+		setModalKeywords("");
+		openModal();
+	};
+
+	const openEditModal = (title: string, content: string, keywords: string, slug: string): void => {
+		setEditingPostSlug(slug);
+		setModalTitle(title);
+		setModalContent(normalizeBlogContent(content));
+		setModalKeywords(keywords);
+		openModal();
+	};
+
+	const handleDelete = async (slug: string): Promise<void> => {
+		if (!confirm("Are you sure you want to delete this post?")) return;
+
+		try {
+			const res = await fetchWithAuth(blogApiUrl(slug), {
+				method: "DELETE",
+			});
+
+			if (!res) {
+				clearAccessToken();
+				alert("Session expired. Please log in again.");
+				return;
+			}
+
+			if (res.ok) {
+				deletePost(slug);
+			}
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	return (
 		<div>
@@ -33,8 +87,17 @@ export default function Blog() {
 			>
 				<section className="relative bg-azg-1 px-4 rounded-2xl text-shadow-md shadow-azb-5 py-6 text-center mb-8">
 					<h1 className="text-4xl font-bold text-azs-1 tracking-wider">Blog</h1>
-					<div className="absolute left-48 top-1/2 -translate-y-1/2">
+					<div className="absolute left-48 top-1/2 -translate-y-1/2 flex items-center gap-3">
 						<BlogAuthButton />
+						{isManager && (
+							<button
+								type="button"
+								className="bg-azb-4 text-azs-1 py-2 px-4 rounded-full shadow-lg hover:bg-azb-5 transition"
+								onClick={openNewPostModal}
+							>
+								+ New Post
+							</button>
+						)}
 						<BlogAuthModal />
 					</div>
 				</section>
@@ -60,7 +123,7 @@ export default function Blog() {
 									{new Date(post.created_at).toLocaleDateString()}
 								</p>
 								<p className={`${lato.className} text-base text-gray-200 mb-6`}>
-									{blogExcerpt(post.content)}
+									{blogPreview(post.content)}
 								</p>
 								<Link
 									href={`/blog/${post.slug}`}
@@ -68,10 +131,36 @@ export default function Blog() {
 								>
 									Read More →
 								</Link>
+								{isManager && (
+									<div className="mt-4 flex gap-2">
+										<button
+											type="button"
+											className="bg-azb-4 text-azs-1 px-3 py-1 rounded hover:bg-azb-5"
+											onClick={() =>
+												openEditModal(
+													post.title,
+													post.content,
+													post.keywords || "",
+													post.slug,
+												)
+											}
+										>
+											Edit
+										</button>
+										<button
+											type="button"
+											className="bg-azb-3 text-azs-1 px-3 py-1 rounded hover:bg-azb-5"
+											onClick={() => handleDelete(post.slug)}
+										>
+											Delete
+										</button>
+									</div>
+								)}
 							</article>
 						))}
 					</div>
 				)}
+				<BlogPostModal />
 			</main>
 		</div>
 	);

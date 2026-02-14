@@ -1,7 +1,7 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import BlogMarkdown from "@/components/blog/BlogMarkdown";
 import { type Post, useBlogStore } from "@/components/zustand/blogSlice";
 import { normalizeBlogContent } from "@/lib/blogContent";
 import { blogApiUrl } from "@/lib/blogApi";
@@ -62,6 +62,12 @@ export default function BlogPost() {
 
 	return (
 		<article className="max-w-3xl mx-auto bg-azs-3 px-4 rounded-2xl py-6 text-left mb-8 p-6 flex flex-col gap-4">
+			<Link
+				href="/blog"
+				className="text-sm text-azb-3 hover:text-azb-5 hover:underline w-fit"
+			>
+				← Back to Blog
+			</Link>
 			<h1 className="text-4xl font-bold text-azb-5">{post.title}</h1>
 
 			<p className="text-md text-azg-2 text-shadow-md shadow-azb-5">
@@ -74,8 +80,8 @@ export default function BlogPost() {
 				</p>
 			)}
 
-			<div className="prose prose-azb max-w-full text-azb-4">
-				<ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
+			<div className="max-w-full">
+				<BlogMarkdown content={post.content} />
 			</div>
 		</article>
 	);

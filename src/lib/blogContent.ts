@@ -32,3 +32,6 @@ export const blogExcerpt = (value: string, maxLength = 160): string => {
 
 	return plain.length > maxLength ? `${plain.slice(0, maxLength)}...` : plain;
 };
+
+export const blogPreview = (value: string, maxLength = 160): string =>
+	blogExcerpt(value, maxLength);

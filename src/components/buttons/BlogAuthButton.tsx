@@ -1,20 +1,19 @@
 import { Lato } from "next/font/google";
-import { useRouter } from "next/router"; // pages router
 import { useBlogStore } from "@/components/zustand/blogSlice";
 
 const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 function BlogAuthButton() {
-	const router = useRouter();
-	const { openAuthModal, getAccessToken } = useBlogStore((state) => ({
+	const { openAuthModal, getAccessToken, syncAccessToken } = useBlogStore((state) => ({
 		openAuthModal: state.openAuthModal,
 		getAccessToken: state.getAccessToken,
+		syncAccessToken: state.syncAccessToken,
 	}));
 
 	const handleClick = () => {
 		const token = getAccessToken();
 		if (token) {
-			router.push("/blog/admin");
+			syncAccessToken();
 			return;
 		}
 

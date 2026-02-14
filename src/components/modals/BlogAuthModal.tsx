@@ -29,7 +29,7 @@ export default function BlogAuthModal() {
 					await refreshAccessToken();
 				}
 				closeAuthModal();
-				router.push("/blog/admin");
+				router.push("/blog");
 			} else {
 				console.error("Login failed");
 			}

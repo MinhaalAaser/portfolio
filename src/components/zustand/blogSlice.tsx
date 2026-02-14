@@ -34,6 +34,8 @@ interface BlogState {
 	toggleAuthModal: () => void;
 	setAccessToken: (token: string) => void;
 	clearAccessToken: () => void;
+	isManager: boolean;
+	syncAccessToken: () => void;
 	getAccessToken: () => string | null;
 	refreshAccessToken: () => Promise<string | null>;
 	getValidAccessToken: () => Promise<string | null>;
@@ -101,13 +103,21 @@ export const useBlogStore = create<BlogState>((set, get) => ({
 	openAuthModal: () => set({ authIsOpen: true }),
 	closeAuthModal: () => set({ authIsOpen: false }),
 	toggleAuthModal: () => set((state) => ({ authIsOpen: !state.authIsOpen })),
+	isManager: false,
 	setAccessToken: (token) => {
 		if (typeof window === "undefined") return;
 		localStorage.setItem("access_token", token);
+		set({ isManager: true });
 	},
 	clearAccessToken: () => {
 		if (typeof window === "undefined") return;
 		localStorage.removeItem("access_token");
+		set({ isManager: false });
+	},
+	syncAccessToken: () => {
+		if (typeof window === "undefined") return;
+		const token = localStorage.getItem("access_token");
+		set({ isManager: Boolean(token) });
 	},
 	getAccessToken: () => {
 		if (typeof window === "undefined") return null;
