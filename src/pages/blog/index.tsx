@@ -90,9 +90,11 @@ export default function Blog() {
       <main
         className={`${grenze.className} flex w-screen flex-col items-center justify-start py-10 px-4`}
       >
-        <section className="relative bg-azg-1 px-4 rounded-2xl text-shadow-md shadow-azb-5 py-6 text-center mb-8">
-          <h1 className="text-4xl font-bold text-azs-1 tracking-wider">Blog</h1>
-          <div className="absolute left-48 top-1/2 -translate-y-1/2 flex px-4 items-center gap-3">
+        <section className="grid w-full max-w-3xl gap-4 text-center mb-8 md:grid-cols-[1fr_auto_1fr] md:items-center">
+          <h1 className="bg-azg-1 px-10 py-6 rounded-2xl text-shadow-md shadow-azb-5 text-4xl font-bold text-azs-1 tracking-wider md:col-start-2">
+            Blog
+          </h1>
+          <div className="flex flex-col items-center justify-center gap-3 md:col-start-3 md:flex-row md:justify-self-end">
             <BlogAuthButton />
             {isManager && (
               <button

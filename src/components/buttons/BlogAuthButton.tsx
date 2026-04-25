@@ -23,7 +23,7 @@ function BlogAuthButton() {
 	return (
 		<button
 			type="button"
-			className={`${lato.className} bg-azs-2 hover:bg-azg-2 text-azb-4 text-lg py-2 px-6 rounded-full shadow-lg transition duration-300 ease-in-out`}
+			className={`${lato.className} whitespace-nowrap bg-azs-2 hover:bg-azg-2 text-azb-4 text-lg py-2 px-6 rounded-full shadow-lg transition duration-300 ease-in-out`}
 			onClick={handleClick}
 		>
 			Manage Blog
