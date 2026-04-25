@@ -28,7 +28,7 @@ function Footer() {
 				>
 					<Image
 						className={modalState ? "hidden" : "filter invert"}
-						src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg"
+						src="/logos/Next-js_Logo_0.svg"
 						alt="Next.js Logo"
 						width={72}
 						height={16}
