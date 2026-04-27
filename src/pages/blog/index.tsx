@@ -16,6 +16,9 @@ const lato = Lato({ weight: ["300", "400", "700"], subsets: ["latin"] });
 export default function Blog() {
 	const {
 		posts,
+		hasLoaded,
+		isLoading,
+		loadError,
 		fetchPosts,
 		isManager,
 		syncAccessToken,
@@ -118,7 +121,22 @@ export default function Blog() {
 						<BlogAuthModal />
 					</div>
 				</section>
-				{posts.length === 0 ? (
+				{!hasLoaded || isLoading ? (
+					<section
+						className="mx-auto mt-10 max-w-5xl rounded-lg border border-white/25 bg-azb-5/60 p-8 text-center shadow-xl shadow-azb-5/30 backdrop-blur-xl"
+						aria-live="polite"
+					>
+						<p className={`${lato.className} text-xl tracking-wide text-azs-2`}>
+							Loading blog posts...
+						</p>
+					</section>
+				) : loadError ? (
+					<section className="mx-auto mt-10 max-w-5xl rounded-lg border border-white/25 bg-azb-5/60 p-8 text-center shadow-xl shadow-azb-5/30 backdrop-blur-xl">
+						<p className={`${lato.className} text-xl tracking-wide text-azs-2`}>
+							{loadError}
+						</p>
+					</section>
+				) : posts.length === 0 ? (
 					<section className="mx-auto mt-10 max-w-5xl rounded-lg border border-white/25 bg-azb-5/60 p-8 text-center shadow-xl shadow-azb-5/30 backdrop-blur-xl">
 						<p className={`${lato.className} text-xl tracking-wide text-azs-2`}>
 							No posts available.
@@ -153,7 +171,7 @@ export default function Blog() {
 									href={`/blog/${post.slug}`}
 									className="mt-auto inline-flex w-fit items-center gap-2 rounded-md bg-azg-2 px-4 py-2 font-bold text-azb-5 transition hover:bg-azs-1"
 								>
-									Read More
+									Read more about {post.title}
 									<ArrowUpRight size={18} />
 								</Link>
 								{isManager && (

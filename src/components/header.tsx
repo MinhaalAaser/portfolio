@@ -24,13 +24,13 @@ function Header() {
 			<div className="md:grid md:grid-cols-2 md:gap-4 flex items-center justify-center">
 				<Link href="/">
 					<Image
-						src="/az-content/AZ-logo-nobg-2.svg"
+						src="/az-content/AZ-logo-lcp.webp"
 						alt="Aaser Zypher.dev"
 						width={300}
 						height={300}
 						priority={true}
 						fetchPriority="high"
-						className="filter brightness-125"
+						sizes="300px"
 					/>
 				</Link>
 
@@ -102,6 +102,10 @@ function Header() {
 				<button
 					type="button"
 					onClick={toggleNav}
+					aria-label={
+						navState ? "Close navigation menu" : "Open navigation menu"
+					}
+					aria-expanded={navState}
 					className="p-2 text-azg-2 text-shadow-lg shadow-azb-5 bg-azb-1 rounded-full mb-4 hover:text-azb-1 hover:bg-azg-2 focus:outline-none md:mb-0"
 				>
 					{navState ? <X size={48} /> : <Menu size={48} />}

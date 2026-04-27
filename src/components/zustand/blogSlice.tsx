@@ -14,6 +14,8 @@ interface BlogState {
 	// Posts
 	posts: Post[];
 	hasLoaded: boolean;
+	isLoading: boolean;
+	loadError: string | null;
 	fetchPosts: (force?: boolean) => Promise<void>;
 
 	setPosts: (posts: Post[]) => void;
@@ -61,27 +63,44 @@ export const useBlogStore = create<BlogState>((set, get) => ({
 	// Posts
 	posts: [],
 	hasLoaded: false,
+	isLoading: false,
+	loadError: null,
 
 	async fetchPosts(force = false) {
 		// Prevent duplicate fetches
-		if (!force && get().hasLoaded) return;
+		if (!force && (get().hasLoaded || get().isLoading)) return;
 
 		try {
+			set({ isLoading: true, loadError: null });
 			const res = await fetch(blogApiUrl("/"), {
 				credentials: "include",
 				cache: "no-store",
 			});
 
-			if (!res.ok) return;
+			if (!res.ok) {
+				set({
+					posts: [],
+					hasLoaded: true,
+					loadError: "Unable to load blog posts.",
+				});
+				return;
+			}
 
 			const data: Post[] = await res.json();
-			set({ posts: data, hasLoaded: true });
+			set({ posts: data, hasLoaded: true, loadError: null });
 		} catch (err) {
 			console.error(err);
+			set({
+				posts: [],
+				hasLoaded: true,
+				loadError: "Unable to load blog posts.",
+			});
+		} finally {
+			set({ isLoading: false });
 		}
 	},
 
-	setPosts: (posts) => set({ posts, hasLoaded: true }),
+	setPosts: (posts) => set({ posts, hasLoaded: true, loadError: null }),
 	addPost: (post) => set((state) => ({ posts: [post, ...state.posts] })),
 	updatePost: (post) =>
 		set((state) => ({
