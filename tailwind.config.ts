@@ -57,6 +57,9 @@ const config: Config = {
 				4: "#0b4472",
 				5: "#001c32",
 			},
+			los: {
+				logo: "#f4fffd",
+			},
 		},
 	},
 	plugins: [

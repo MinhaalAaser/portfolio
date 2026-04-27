@@ -41,9 +41,9 @@ export default function BlogAuthModal() {
 	return (
 		<Dialog.Root open={authIsOpen} onOpenChange={(o) => !o && closeAuthModal()}>
 			<Dialog.Portal>
-				<Dialog.Overlay className="fixed inset-0 bg-black/50" />
-				<Dialog.Content className="fixed left-1/2 top-1/2 w-[90%] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 shadow-lg">
-					<Dialog.Title className="mb-4 text-lg font-medium">
+				<Dialog.Overlay className="fixed inset-0 bg-black/70 backdrop-blur-sm" />
+				<Dialog.Content className="fixed left-1/2 top-1/2 w-[90%] max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-lg border border-white/25 bg-azb-5/90 p-6 text-azs-1 shadow-2xl shadow-black/40 backdrop-blur-xl">
+					<Dialog.Title className="mb-4 text-lg font-bold text-azg-2">
 						Login
 					</Dialog.Title>
 
@@ -51,7 +51,7 @@ export default function BlogAuthModal() {
 						<input
 							type="email"
 							placeholder="Email"
-							className="w-full rounded border px-3 py-2"
+							className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-azs-1 placeholder:text-azs-4"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							required
@@ -60,19 +60,22 @@ export default function BlogAuthModal() {
 						<input
 							type="password"
 							placeholder="Password"
-							className="w-full rounded border px-3 py-2"
+							className="w-full rounded-md border border-white/20 bg-white/10 px-3 py-2 text-azs-1 placeholder:text-azs-4"
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							required
 						/>
 
-						<button type="submit" className="w-full">
+						<button
+							type="submit"
+							className="w-full rounded-md bg-azg-2 px-4 py-2 font-bold text-azb-5 hover:bg-azs-1"
+						>
 							Sign In
 						</button>
 					</form>
 
 					<Dialog.Close asChild>
-						<button type="button" className="absolute right-2 top-2">
+						<button type="button" className="absolute right-2 top-2 text-azg-2">
 							✕
 						</button>
 					</Dialog.Close>

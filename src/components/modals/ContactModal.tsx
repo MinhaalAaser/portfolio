@@ -1,4 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
+import { X } from "lucide-react";
 import { Grenze, Lato } from "next/font/google";
 import type { FormEvent } from "react";
 import { useContactModalStore } from "../zustand/contactSlice";
@@ -41,25 +42,25 @@ export default function ContactModal() {
 	};
 
 	return (
-		<Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-azs-2 rounded-md p-6 w-screen z-[110] max-w-2xl">
+		<Dialog.Content className="fixed left-1/2 top-1/2 z-[110] max-h-[90vh] w-[92vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg border border-white/25 bg-azb-5/90 p-6 text-azs-1 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-8">
 			<Dialog.Title
-				className={`${grenze.className} text-3xl text-shadow-md shadow-azb-5 tracking-wider text-azg-2 text-center my-4 font-bold`}
+				className={`${grenze.className} my-4 text-center text-3xl font-bold tracking-wider text-azg-2 text-shadow-md shadow-azb-5 sm:text-4xl`}
 			>
-				Contact Me
+				Contact Aaser Zypher Solutions
 			</Dialog.Title>
 			<form
 				onSubmit={handleSubmit}
-				className={`${lato.className} flex flex-col items-center text-lg tracking-wider justify-center`}
+				className={`${lato.className} mx-auto flex max-w-xl flex-col items-stretch justify-center gap-4 text-lg tracking-wider`}
 			>
 				<input
 					type="text"
 					name="name"
 					placeholder="Name"
-					className="w-1/2  h-10 text-center m-4 rounded-md placeholder-text-azb-4 focus:placeholder-transparent"
+					className="min-h-12 w-full rounded-md border border-white/20 bg-white/10 px-4 py-3 text-azs-1 placeholder:text-azs-4 focus:outline-none focus:ring-2 focus:ring-azg-2"
 				/>
 
 				<input
-					className="w-1/2 h-10 text-center m-4 rounded-md placeholder-text-azb-4 focus:placeholder-transparent"
+					className="min-h-12 w-full rounded-md border border-white/20 bg-white/10 px-4 py-3 text-azs-1 placeholder:text-azs-4 focus:outline-none focus:ring-2 focus:ring-azg-2"
 					type="email"
 					required
 					name="email"
@@ -67,19 +68,28 @@ export default function ContactModal() {
 				/>
 
 				<textarea
-					className="w-3/4 h-40 text-center m-4 rounded-md p-2 text-black placeholder-text-azb-4 focus:text-margin-5 focus:text-left focus:placeholder-transparent"
+					className="min-h-40 w-full rounded-md border border-white/20 bg-white/10 px-4 py-3 text-azs-1 placeholder:text-azs-4 focus:outline-none focus:ring-2 focus:ring-azg-2"
 					name="message"
 					required
 					placeholder="Type your message..."
 				></textarea>
 
 				<button
-					className="px-4 py-2 m-5 text-azs-1 text-lg tracking-wider bg-azb-4 rounded-md hover:bg-azb-2"
+					className="mt-2 w-full rounded-md bg-azg-2 px-4 py-3 text-lg font-bold tracking-wider text-azb-5 transition hover:bg-azs-1 focus:outline-none focus:ring-2 focus:ring-azg-2 focus:ring-offset-2 focus:ring-offset-azb-5"
 					type="submit"
 				>
 					Submit Form
 				</button>
 			</form>
+			<Dialog.Close asChild>
+				<button
+					type="button"
+					className="absolute right-3 top-3 rounded-md border border-white/20 bg-white/10 p-2 text-azg-2 transition hover:bg-azb-4 focus:outline-none focus:ring-2 focus:ring-azg-2"
+					aria-label="Close contact form"
+				>
+					<X size={20} />
+				</button>
+			</Dialog.Close>
 		</Dialog.Content>
 	);
 }
