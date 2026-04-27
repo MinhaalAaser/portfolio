@@ -36,6 +36,16 @@ export const portfolioProjects: PortfolioProject[] = [
 		description:
 			"This site acts as the central client-facing platform: a focused homepage, services-oriented pricing content, contact flows, blog publishing, and now a case-study portfolio system.",
 		image: "/az-content/AZ-logo-nobg-2.svg",
+		resultImage: {
+			src: "/az-content/AZ-Lighthouse.webp",
+			alt: "Aaser Zypher.dev Lighthouse performance report",
+		},
+		screenshots: [
+			{
+				src: "/az-content/AZ-Screenshot.webp",
+				alt: "Aaser Zypher.dev homepage screenshot",
+			},
+		],
 		year: "2025",
 		role: "Full-stack developer",
 		stack: [
