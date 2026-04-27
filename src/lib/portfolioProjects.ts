@@ -119,35 +119,35 @@ export const portfolioProjects: PortfolioProject[] = [
 			},
 		],
 	},
-	{
-		slug: "blog-publishing-flow",
-		title: "Blog Publishing Flow",
-		category: "Content System",
-		summary:
-			"A slug-based blog experience with markdown rendering and API-backed post loading.",
-		description:
-			"The blog system supports individual post URLs, markdown rendering, local state, and API fallback behavior so writing can live beside the portfolio and service pages.",
-		image: "/az-content/pricing2.png",
-		year: "2026",
-		role: "Full-stack developer",
-		stack: ["Next.js", "React Markdown", "Zustand", "API integration"],
-		highlights: [
-			"Implemented dynamic post routes for shareable long-form content.",
-			"Normalized markdown content before rendering to keep display consistent.",
-			"Added loading and not-found states for more resilient navigation.",
-		],
-		outcomes: [
-			"Search-friendly URLs for individual posts.",
-			"A stronger foundation for thought leadership and technical writing.",
-			"Reusable route structure for portfolio case-study pages.",
-		],
-		links: [
-			{
-				label: "Read blog",
-				href: "/blog",
-			},
-		],
-	},
+	// {
+	// 	slug: "blog-publishing-flow",
+	// 	title: "Blog Publishing Flow",
+	// 	category: "Content System",
+	// 	summary:
+	// 		"A slug-based blog experience with markdown rendering and API-backed post loading.",
+	// 	description:
+	// 		"The blog system supports individual post URLs, markdown rendering, local state, and API fallback behavior so writing can live beside the portfolio and service pages.",
+	// 	image: "/az-content/pricing2.png",
+	// 	year: "2026",
+	// 	role: "Full-stack developer",
+	// 	stack: ["Next.js", "React Markdown", "Zustand", "API integration"],
+	// 	highlights: [
+	// 		"Implemented dynamic post routes for shareable long-form content.",
+	// 		"Normalized markdown content before rendering to keep display consistent.",
+	// 		"Added loading and not-found states for more resilient navigation.",
+	// 	],
+	// 	outcomes: [
+	// 		"Search-friendly URLs for individual posts.",
+	// 		"A stronger foundation for thought leadership and technical writing.",
+	// 		"Reusable route structure for portfolio case-study pages.",
+	// 	],
+	// 	links: [
+	// 		{
+	// 			label: "Read blog",
+	// 			href: "/blog",
+	// 		},
+	// 	],
+	// },
 ];
 
 export function getPortfolioProject(slug: string) {

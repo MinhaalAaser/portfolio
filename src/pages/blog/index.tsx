@@ -149,15 +149,11 @@ export default function Blog() {
 								key={post.slug}
 								className={`${lato.className} group flex min-h-72 flex-col rounded-lg border border-white/25 bg-azb-5/55 p-6 shadow-xl shadow-azb-5/30 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-azg-2 hover:bg-azb-4/70`}
 							>
-								<div className="mb-4 flex items-center justify-between gap-3">
+								<div className="mb-4 flex items-center gap-3">
 									<p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-bold text-azg-2">
 										<CalendarDays size={16} />
 										{new Date(post.created_at).toLocaleDateString()}
 									</p>
-									<ArrowUpRight
-										className="text-azg-2 transition group-hover:translate-x-1 group-hover:-translate-y-1"
-										size={22}
-									/>
 								</div>
 								<h2
 									className={`${grenze.className} mb-3 text-2xl font-bold leading-tight text-azs-1`}
@@ -169,9 +165,10 @@ export default function Blog() {
 								</p>
 								<Link
 									href={`/blog/${post.slug}`}
-									className="mt-auto inline-flex w-fit items-center gap-2 rounded-md bg-azg-2 px-4 py-2 font-bold text-azb-5 transition hover:bg-azs-1"
+									aria-label={`Read more about ${post.title}`}
+									className="mt-auto inline-flex w-fit items-center gap-2 self-end rounded-md bg-azg-2 px-4 py-2 font-bold text-azb-5 transition hover:bg-azs-1"
 								>
-									Read more about {post.title}
+									Read More
 									<ArrowUpRight size={18} />
 								</Link>
 								{isManager && (

@@ -83,7 +83,7 @@ export default function BlogPost() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 			</Head>
 			<main className="min-h-screen w-full px-4 pb-16 pt-10 text-azs-1 sm:px-6 lg:px-8">
-				<article className="mx-auto flex max-w-4xl flex-col gap-6">
+				<article className="mx-auto flex max-w-4xl flex-col">
 					<Link
 						href="/blog"
 						className={`${lato.className} inline-flex w-fit items-center gap-2 rounded-md border border-white/25 bg-azb-5/60 px-4 py-2 font-bold text-azg-2 backdrop-blur-xl transition hover:border-azg-2 hover:bg-azb-4`}
@@ -92,7 +92,7 @@ export default function BlogPost() {
 						Blog
 					</Link>
 
-					<header className="rounded-lg border border-white/25 bg-azb-5/60 p-6 shadow-2xl shadow-azb-5/40 backdrop-blur-xl sm:p-8">
+					<header className="mt-6 rounded-t-lg border border-white/25 bg-azb-5/60 p-6 shadow-2xl shadow-azb-5/40 backdrop-blur-xl sm:p-8">
 						<h1
 							className={`${grenze.className} text-4xl font-bold leading-tight text-azs-1 text-shadow-md shadow-azb-5 sm:text-5xl`}
 						>
@@ -117,7 +117,7 @@ export default function BlogPost() {
 					</header>
 
 					<div
-						className={`${lato.className} rounded-lg border border-white/25 bg-azb-5/60 p-6 shadow-xl shadow-azb-5/30 backdrop-blur-xl sm:p-8`}
+						className={`${lato.className} rounded-b-lg border border-t-0 border-white/25 bg-azb-5/60 p-6 shadow-xl shadow-azb-5/30 backdrop-blur-xl sm:p-8`}
 					>
 						<BlogMarkdown content={post.content} />
 					</div>
