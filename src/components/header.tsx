@@ -24,7 +24,7 @@ function Header() {
 			<div className="md:grid md:grid-cols-2 md:gap-4 flex items-center justify-center">
 				<Link href="/">
 					<Image
-						src="/az-content/AZ-logo-lcp.webp"
+						src="/az-content/AZ-logo-lcp-transparent.webp"
 						alt="Aaser Zypher.dev"
 						width={300}
 						height={300}
