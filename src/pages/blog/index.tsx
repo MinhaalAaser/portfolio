@@ -89,8 +89,8 @@ export default function Blog() {
 			</Head>
 
 			<main className="min-h-screen w-full px-4 pb-16 pt-10 text-azs-1 sm:px-6 lg:px-8">
-				<section className="mx-auto grid w-full max-w-5xl gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
-					<div className="space-y-4">
+				<section className="mx-auto flex w-full max-w-5xl flex-col gap-6">
+					<div className="space-y-8">
 						<h1
 							className={`${grenze.className} text-center text-4xl font-bold leading-tight text-azs-1 text-shadow-md shadow-azb-5 sm:text-5xl`}
 						>
@@ -103,7 +103,7 @@ export default function Blog() {
 							and the occasional useful thought from behind the keyboard.
 						</p>
 					</div>
-					<div className="flex flex-wrap items-center justify-start gap-3 lg:justify-end">
+					<div className="flex flex-wrap items-center justify-start gap-3">
 						<BlogAuthButton />
 						{isManager && (
 							<button
@@ -125,7 +125,7 @@ export default function Blog() {
 						</p>
 					</section>
 				) : (
-					<div className="mx-auto mt-10 grid w-full max-w-5xl gap-5 md:grid-cols-2">
+					<div className="mx-auto mt-10 grid w-full max-w-5xl gap-5">
 						{posts.map((post) => (
 							<article
 								key={post.slug}
