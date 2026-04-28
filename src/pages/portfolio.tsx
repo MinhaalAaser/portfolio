@@ -35,7 +35,7 @@ function Portfolio() {
 				<section className="mx-auto max-w-6xl py-8">
 					<div className="space-y-5">
 						<h2
-							className={`${grenze.className} max-w-3xl text-4xl font-bold leading-tight text-azs-1 text-shadow-md shadow-azb-5 sm:text-5xl lg:text-6xl`}
+							className={`${grenze.className} max-w-3xl text-2xl font-bold leading-tight text-azs-1 text-shadow-md shadow-azb-5 sm:text-3xl lg:text-4xl`}
 						>
 							Web experiences built to be fast, clear, and worth clicking.
 						</h2>

@@ -1,6 +1,10 @@
 import { create } from "zustand";
 import { blogApiUrl } from "@/lib/blogApi";
 
+const BLOG_POSTS_CACHE_KEY = "az_blog_posts_cache";
+const BLOG_FETCH_RETRIES = 3;
+const BLOG_FETCH_RETRY_DELAY_MS = 700;
+
 export interface Post {
 	id?: number;
 	slug: string;
@@ -9,6 +13,71 @@ export interface Post {
 	keywords?: string;
 	created_at: string;
 }
+
+const sleep = (delayMs: number): Promise<void> =>
+	new Promise((resolve) => setTimeout(resolve, delayMs));
+
+const readCachedPosts = (): Post[] | null => {
+	if (typeof window === "undefined") return null;
+
+	try {
+		const cached = localStorage.getItem(BLOG_POSTS_CACHE_KEY);
+		if (!cached) return null;
+
+		const parsed = JSON.parse(cached);
+		if (!Array.isArray(parsed)) return null;
+
+		return parsed.filter(
+			(post): post is Post =>
+				typeof post?.slug === "string" &&
+				typeof post?.title === "string" &&
+				typeof post?.content === "string" &&
+				typeof post?.created_at === "string",
+		);
+	} catch (err) {
+		console.error(err);
+		return null;
+	}
+};
+
+const cachePosts = (posts: Post[]): void => {
+	if (typeof window === "undefined") return;
+
+	try {
+		localStorage.setItem(BLOG_POSTS_CACHE_KEY, JSON.stringify(posts));
+	} catch (err) {
+		console.error(err);
+	}
+};
+
+const fetchBlogPosts = async (): Promise<Post[]> => {
+	let lastError: unknown;
+
+	for (let attempt = 1; attempt <= BLOG_FETCH_RETRIES; attempt += 1) {
+		try {
+			const res = await fetch(blogApiUrl("/"), {
+				credentials: "include",
+				cache: "no-store",
+			});
+
+			if (res.ok) return res.json();
+
+			lastError = new Error(`Blog API returned ${res.status}`);
+
+			if (res.status < 500) break;
+		} catch (err) {
+			lastError = err;
+		}
+
+		if (attempt < BLOG_FETCH_RETRIES) {
+			await sleep(BLOG_FETCH_RETRY_DELAY_MS * attempt);
+		}
+	}
+
+	throw lastError instanceof Error
+		? lastError
+		: new Error("Unable to load blog posts.");
+};
 
 interface BlogState {
 	// Posts
@@ -70,37 +139,39 @@ export const useBlogStore = create<BlogState>((set, get) => ({
 		// Prevent duplicate fetches
 		if (!force && (get().hasLoaded || get().isLoading)) return;
 
+		const cachedPosts = readCachedPosts();
+		if (cachedPosts?.length) {
+			set({
+				posts: cachedPosts,
+				hasLoaded: true,
+				loadError: null,
+			});
+		}
+
 		try {
 			set({ isLoading: true, loadError: null });
-			const res = await fetch(blogApiUrl("/"), {
-				credentials: "include",
-				cache: "no-store",
-			});
 
-			if (!res.ok) {
-				set({
-					posts: [],
-					hasLoaded: true,
-					loadError: "Unable to load blog posts.",
-				});
-				return;
-			}
-
-			const data: Post[] = await res.json();
+			const data = await fetchBlogPosts();
+			cachePosts(data);
 			set({ posts: data, hasLoaded: true, loadError: null });
 		} catch (err) {
 			console.error(err);
+			const hasUsablePosts = get().posts.length > 0;
 			set({
-				posts: [],
 				hasLoaded: true,
-				loadError: "Unable to load blog posts.",
+				loadError: hasUsablePosts
+					? null
+					: "Unable to load blog posts. Please try again soon.",
 			});
 		} finally {
 			set({ isLoading: false });
 		}
 	},
 
-	setPosts: (posts) => set({ posts, hasLoaded: true, loadError: null }),
+	setPosts: (posts) => {
+		cachePosts(posts);
+		set({ posts, hasLoaded: true, loadError: null });
+	},
 	addPost: (post) => set((state) => ({ posts: [post, ...state.posts] })),
 	updatePost: (post) =>
 		set((state) => ({

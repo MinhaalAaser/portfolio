@@ -121,7 +121,7 @@ export default function Blog() {
 						<BlogAuthModal />
 					</div>
 				</section>
-				{!hasLoaded || isLoading ? (
+				{(!hasLoaded || isLoading) && posts.length === 0 ? (
 					<section
 						className="mx-auto mt-10 max-w-5xl rounded-lg border border-white/25 bg-azb-5/60 p-8 text-center shadow-xl shadow-azb-5/30 backdrop-blur-xl"
 						aria-live="polite"
@@ -135,6 +135,13 @@ export default function Blog() {
 						<p className={`${lato.className} text-xl tracking-wide text-azs-2`}>
 							{loadError}
 						</p>
+						<button
+							type="button"
+							className={`${lato.className} mt-5 rounded-md bg-azg-2 px-5 py-3 font-bold text-azb-5 shadow-lg transition hover:bg-azs-1 focus:outline-none focus:ring-2 focus:ring-azg-2 focus:ring-offset-2 focus:ring-offset-azb-5`}
+							onClick={() => fetchPosts(true)}
+						>
+							Try again
+						</button>
 					</section>
 				) : posts.length === 0 ? (
 					<section className="mx-auto mt-10 max-w-5xl rounded-lg border border-white/25 bg-azb-5/60 p-8 text-center shadow-xl shadow-azb-5/30 backdrop-blur-xl">
