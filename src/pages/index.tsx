@@ -2,7 +2,6 @@ import { Grenze, Hedvig_Letters_Sans, Lato } from "next/font/google";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useContactModalStore } from "@/components/zustand/contactSlice";
 
 const lato = Lato({
 	weight: ["300", "400", "700"],
@@ -20,8 +19,6 @@ const grenze = Grenze({
 });
 
 export default function Home() {
-	const toggleModal = useContactModalStore((state) => state.toggleModal);
-	const isModalOpen = useContactModalStore((state) => state.isOpen);
 	const ctaClass =
 		"m-2 inline-flex w-fit items-center justify-center justify-self-center self-center rounded-md border-2 border-azg-2 px-4 py-2 text-xl font-bold shadow-md transition-colors hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-azg-2 focus:ring-offset-2 focus:ring-offset-azb-5";
 
@@ -56,25 +53,28 @@ export default function Home() {
 					I provide complete web development solutions with crisp and responsive
 					Front-end UIs and secure Back-end configurations that work seamlessly
 					on any device.
-					<Link
-						href="/about"
-						className={`${ctaClass} bg-azs-1 text-azb-1 shadow-azg-2 hover:bg-azg-1 hover:text-azb-5`}
-					>
-						Read more about me...
-					</Link>
-					<Link
-						href="/portfolio"
-						className={`${ctaClass} bg-azb-5 text-azg-2 shadow-azb-1 hover:bg-azg-2 hover:text-azb-5`}
-					>
-						View my recent work...
-					</Link>
-					<button
-						type="button"
-						onClick={() => toggleModal()}
-						className={`${ctaClass} bg-azs-1 text-azb-5 shadow-azg-2 hover:cursor-pointer hover:bg-azg-1`}
-					>
-						Contact me to get started!
-					</button>
+					<div className="flex flex-col items-center justify-center gap-2 md:flex-row md:gap-4">
+						<Link
+							href="/about"
+							className={`${ctaClass} bg-azs-1 text-azb-1 shadow-azg-2 hover:bg-azg-1 hover:text-azb-5`}
+						>
+							Read More About Me
+						</Link>
+						<span
+							className={`${grenze.className} flex items-center gap-3 text-xl font-bold uppercase tracking-wider text-azg-2 text-shadow-md shadow-azb-5`}
+							aria-hidden="true"
+						>
+							<span className="h-px w-10 bg-azg-2/70" />
+							Or
+							<span className="h-px w-10 bg-azg-2/70" />
+						</span>
+						<Link
+							href="/portfolio"
+							className={`${ctaClass} bg-azb-5 text-azg-2 shadow-azb-1 hover:bg-azg-2 hover:text-azb-5`}
+						>
+							View My Recent Work
+						</Link>
+					</div>
 					<span className="text-azs-1 text-shadow-md shadow-azb-5 font-regular text-xl my-4">
 						My current skillset includes:
 					</span>
@@ -202,9 +202,7 @@ export default function Home() {
 									height={72}
 									className={`h-24 w-24 ${
 										heading === "Flask"
-											? isModalOpen
-												? "hidden"
-												: "filter invert"
+											? "filter invert"
 											: heading === "GCP"
 												? "bg-white"
 												: heading === "Python"
